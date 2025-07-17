@@ -62,7 +62,7 @@ export interface HomepageContent {
 export interface AboutSection {
   subtitle: string;
   description: string;
-  image: string | null;
+  image: string;
   image_alt_text: string;
   video_url: string;
 }
