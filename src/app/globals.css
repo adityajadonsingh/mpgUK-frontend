@@ -261,3 +261,45 @@ a {
     padding: 0 20px;
   }
 }
+.testimonials{
+  .slider{
+    .swiper-wrapper{
+      padding: 30px 0 20px 0;
+    }
+  }
+  .card{
+    background-color: #f6f4f5;
+    padding: 20px;
+  }
+  .swiper-button-prev {
+    left: 15px;
+  }
+  .swiper-button-next {
+    right: 15px;
+  }
+  .swiper-button-prev,
+  .swiper-button-next {
+    background-color: #f36c23b8;
+    width: 30px;
+    height: 30px;
+    border-radius: 100%;
+    backdrop-filter: blur(2px);
+  }
+  .swiper-button-prev:hover,
+  .swiper-button-next:hover {
+    background-color: #f36c23;
+  }
+  .swiper-button-prev::after,
+  .swiper-button-next::after {
+    font-size: 18px;
+    color: #fff;
+  }
+  .swiper-button-prev:hover::after,
+  .swiper-button-next:hover::after {
+    color: #fff;
+  }
+}
+.swiper-slide {
+  height: 100%;
+  display: flex;
+}
