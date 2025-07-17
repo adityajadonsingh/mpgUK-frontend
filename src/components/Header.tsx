@@ -71,14 +71,14 @@ export default function Header() {
                   <i className="bi bi-search"></i>
                 </div>
                 <div className="contact">
-                  <Link href={`tel:${contactDetails.phones[0]}`}>
+                  <Link href={`tel:${contactDetails[0]?.phones[0]}`}>
                     <div className="icn">
                       <i className="bi bi-telephone-fill"></i>
                     </div>
                   </Link>
                 </div>
                 <div className="contact">
-                  <Link href={`mailto:${contactDetails.emails[0]}`}>
+                  <Link href={`mailto:${contactDetails[0]?.emails[0]}`}>
                     <div className="icn">
                       <i className="bi bi-envelope-fill"></i>
                     </div>

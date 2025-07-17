@@ -77,33 +77,3 @@ export interface Testimonial {
   rating: number;
   testimonial: string;
 }
-
-
-
-
-// --------------------------------------------
-
-// export interface Product {
-//   id: string;
-//   name: string;
-//   price: number;
-//   imageUrl: string;
-// }
-
-// export interface Category {
-//   id: string;
-//   name: string;
-//   slug: string;
-// }
-
-// export interface Blog {
-//   id: string;
-//   title: string;
-//   content: string;
-//   slug: string;
-// }
-
-// export interface HomeData {
-//   title: string;
-//   // Add other home page fields
-// }
