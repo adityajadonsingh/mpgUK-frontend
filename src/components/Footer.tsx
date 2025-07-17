@@ -51,7 +51,7 @@ export default function Footer() {
                   <Link href={`tel:`}>{contactDetails[0]?.emails[0]}</Link>
                 </div>
               </li>
-              <li className="flex gap-x-4">
+              <li className="flex gap-x-4"> 
                 <div className="icn">
                   <i className="bi bi-geo-alt-fill text-lg"></i>
                 </div>
