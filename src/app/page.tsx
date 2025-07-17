@@ -4,12 +4,12 @@ import CategorySlider from "@/components/home/CategorySlider";
 import FeatureCard from "@/components/home/FeatureCard";
 import TestimonialSection from "@/components/home/TestimonialSection";
 import { getHomeBanners, getHomePageData, getTestimonials } from "@/lib/api";
-import { Banner, HomepageContent, Testimonials } from "@/types";
+import { Banner, HomepageContent } from "@/types";
 
 export default async function HomePage() {
   const homepageContent: HomepageContent = await getHomePageData();
   const bannerData: Banner[] = await getHomeBanners();
-  const testimonials: Testimonials[] = await getTestimonials();
+  const {testimonials} = await getTestimonials();
   return (
     <>
       <BannerSection data={bannerData} />
@@ -25,7 +25,7 @@ export default async function HomePage() {
         imgBig_alt={homepageContent.about_section.image_alt_text}
         imgSmall={homepageContent.about_section.video_url}
       />
-      <TestimonialSection data={testimonials.testimonials} />
+      <TestimonialSection data={testimonials} />
     </>
   );
 }

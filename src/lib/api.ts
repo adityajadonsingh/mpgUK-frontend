@@ -1,7 +1,13 @@
 // src/lib/api.ts
 
 import { Banner, Category, ContactDetails, HomepageContent, Testimonials } from "@/types";
-
+export interface Testimonial {
+  id: number;
+  name: string;
+  profile_image: string;
+  rating: number;
+  testimonial: string;
+}
 const API_URL = "https://backend.mpgstone.co.uk/api";
 
 export async function getHomePageData(): Promise<HomepageContent> {
@@ -35,7 +41,7 @@ export async function getContactDetails(): Promise<ContactDetails[]> {
   return res.json();
 }
 
-export async function getTestimonials(): Promise<Testimonials[]> {
+export async function getTestimonials(): Promise<{ testimonials: Testimonial[] }> {
   const res = await fetch(`${API_URL}/testimonials`, { next: { revalidate: 60 } });
   if (!res.ok) {
     throw new Error(`Failed to fetch testimonials: ${res.status} ${res.statusText}`);
