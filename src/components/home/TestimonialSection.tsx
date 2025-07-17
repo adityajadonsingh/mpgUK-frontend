@@ -6,7 +6,7 @@ import "swiper/css/navigation";
 import "swiper/css";
 import { Testimonials } from "@/types";
 
-export default function TestimonialSection({ data }: { data: Testimonials }) {
+export default function TestimonialSection({ data }: { data: Testimonials[] }) {
   console.log(data);
   return (
     <>
