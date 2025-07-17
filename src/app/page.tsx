@@ -1,15 +1,18 @@
 import AboutSection from "@/components/home/AboutSection";
 import BannerSection from "@/components/home/BannerSection";
+import BlogsSection from "@/components/home/BlogsSection";
 import CategorySlider from "@/components/home/CategorySlider";
+import ContactSection from "@/components/home/ContactSection";
 import FeatureCard from "@/components/home/FeatureCard";
 import TestimonialSection from "@/components/home/TestimonialSection";
-import { getHomeBanners, getHomePageData, getTestimonials } from "@/lib/api";
+import { getBlogs, getHomeBanners, getHomePageData, getTestimonials } from "@/lib/api";
 import { Banner, HomepageContent } from "@/types";
 
 export default async function HomePage() {
   const homepageContent: HomepageContent = await getHomePageData();
   const bannerData: Banner[] = await getHomeBanners();
   const {testimonials} = await getTestimonials();
+  const {blogs} = await getBlogs();
   return (
     <>
       <BannerSection data={bannerData} />
@@ -26,6 +29,9 @@ export default async function HomePage() {
         imgSmall={homepageContent.about_section.video_url}
       />
       <TestimonialSection data={testimonials} />
+      <BlogsSection data={blogs} />
+      <ContactSection />
+
     </>
   );
 }

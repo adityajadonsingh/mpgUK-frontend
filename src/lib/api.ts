@@ -1,6 +1,6 @@
 // src/lib/api.ts
 
-import { Banner, Category, ContactDetails, HomepageContent } from "@/types";
+import { Banner, Blog, Category, ContactDetails, HomepageContent } from "@/types";
 export interface Testimonial {
   id: number;
   name: string;
@@ -8,7 +8,7 @@ export interface Testimonial {
   rating: number;
   testimonial: string;
 }
-const API_URL = "https://backend.mpgstone.co.uk/api";
+const API_URL = process.env.API_URL!;
 
 export async function getHomePageData(): Promise<HomepageContent> {
   const res = await fetch(`${API_URL}/homepage-content`, { next: { revalidate: 60 } });
@@ -45,6 +45,13 @@ export async function getTestimonials(): Promise<{ testimonials: Testimonial[] }
   const res = await fetch(`${API_URL}/testimonials`, { next: { revalidate: 60 } });
   if (!res.ok) {
     throw new Error(`Failed to fetch testimonials: ${res.status} ${res.statusText}`);
+  }
+  return res.json();
+}
+export async function getBlogs(): Promise<{ blogs: Blog[] }> {
+  const res = await fetch(`${API_URL}/blogs`, { next: { revalidate: 60 } });
+  if (!res.ok) {
+    throw new Error(`Failed to fetch blogs: ${res.status} ${res.statusText}`);
   }
   return res.json();
 }

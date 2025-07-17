@@ -11,7 +11,6 @@ interface TestimonialProps {
 }
 
 export default function TestimonialSection({ data }: TestimonialProps) {
-  console.log(data);
   return (
     <>
       <section className="testimonials mt-20 mb-10">
@@ -36,7 +35,6 @@ export default function TestimonialSection({ data }: TestimonialProps) {
               effect="slide"
             >
               {data.map((testimonial) => {
-                console.log(testimonial);
                 return (
                   <SwiperSlide
                     key={testimonial.id}
