@@ -4,9 +4,9 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation, Autoplay } from "swiper/modules";
 import "swiper/css/navigation";
 import "swiper/css";
-import { Testimonials } from "@/types";
+import { Testimonial } from "@/types";
 
-export default function TestimonialSection({ data }: { data: Testimonials[] }) {
+export default function TestimonialSection({ data }: { data: Testimonial }) {
   console.log(data);
   return (
     <>
@@ -45,7 +45,7 @@ export default function TestimonialSection({ data }: { data: Testimonials[] }) {
                           />
                         </div>
                         <span className="text-lg font-medium">
-                          {testimonial.category_name}
+                          {testimonial.name}
                         </span>
                       </div>
                     </div>

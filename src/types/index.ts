@@ -67,7 +67,10 @@ export interface AboutSection {
   video_url: string;
 }
 
-export interface Testimonials {
+export interface Testimonial {
+  testimonials: TestimonialArray[];
+}
+export interface TestimonialArray {
   id: number;
   name: string;
   profile_image: string;
