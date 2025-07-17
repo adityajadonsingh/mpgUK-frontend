@@ -4,7 +4,7 @@ import { Banner, Category, ContactDetails, HomepageContent, Testimonials } from 
 
 const API_URL = "https://backend.mpgstone.co.uk/api";
 
-export async function getHomePageData(): Promise<HomepageContent[]> {
+export async function getHomePageData(): Promise<HomepageContent> {
   const res = await fetch(`${API_URL}/homepage-content`, { next: { revalidate: 60 } });
   if (!res.ok) {
     throw new Error(`Failed to fetch home page content: ${res.status} ${res.statusText}`);
