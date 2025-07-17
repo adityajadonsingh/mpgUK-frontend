@@ -7,7 +7,7 @@ import "swiper/css";
 import { Testimonials } from "@/types";
 
 export default function TestimonialSection({ data }: { data: Testimonials }) {
-  console.log(data)
+  console.log(data);
   return (
     <>
       <section className="testimonials">
@@ -20,7 +20,6 @@ export default function TestimonialSection({ data }: { data: Testimonials }) {
               slidesPerView={4}
               spaceBetween={20}
               className="h-full w-full"
-              loop={true}
               autoplay={{
                 delay: 6000,
                 disableOnInteraction: false,
@@ -28,28 +27,31 @@ export default function TestimonialSection({ data }: { data: Testimonials }) {
               speed={800}
               effect="slide"
             >
-              {/* {categories.map((category) => (
-                <SwiperSlide
-                  key={category.id}
-                  className="relative w-full h-full"
-                >
-                  <div className="card">
-                    <Link href={`/product-category/${category.slug}/`}>
-                      <div className="img-box">
-                        <Image
-                          src={category.image}
-                          alt={category.alt_text}
-                          className="w-full h-full z-0 object-cover object-center"
-                          fill
-                        />
+              {data.map((testimonial) => {
+                console.log(testimonial)
+                return (
+                  <SwiperSlide
+                    key={testimonial.id}
+                    className="relative w-full h-full"
+                  >
+                    <div className="card">
+                      <div className="flex">
+                        <div className="img-box">
+                          <Image
+                            src={testimonial.profile_image}
+                            alt={testimonial.name}
+                            className="w-full h-full object-cover object-center"
+                            fill
+                          />
+                        </div>
+                        <span className="text-lg font-medium">
+                          {testimonial.category_name}
+                        </span>
                       </div>
-                      <h4 className="text-lg text-center mt-3 font-medium">
-                        {category.category_name}
-                      </h4>
-                    </Link>
-                  </div>
-                </SwiperSlide>
-              ))} */}
+                    </div>
+                  </SwiperSlide>
+                );
+              })}
             </Swiper>
           </div>
         </div>
