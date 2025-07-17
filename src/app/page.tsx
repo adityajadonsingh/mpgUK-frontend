@@ -7,7 +7,7 @@ import { getHomeBanners, getHomePageData, getTestimonials } from "@/lib/api";
 import { Banner, HomepageContent, Testimonials } from "@/types";
 
 export default async function HomePage() {
-  const homepageContent: HomepageContent[] = await getHomePageData();
+  const homepageContent: HomepageContent = await getHomePageData();
   const bannerData: Banner[] = await getHomeBanners();
   const testimonials: Testimonials[] = await getTestimonials();
   return (
