@@ -63,7 +63,7 @@ export interface AboutSection {
   subtitle: string;
   description: string;
   image: string | null;
-  image_alt_text: string | "null";
+  image_alt_text: string;
   video_url: string;
 }
 
