@@ -1,6 +1,6 @@
 // src/lib/api.ts
 
-import { Banner, Category, ContactDetails, HomepageContent, Testimonials } from "@/types";
+import { Banner, Category, ContactDetails, HomepageContent } from "@/types";
 export interface Testimonial {
   id: number;
   name: string;
