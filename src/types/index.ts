@@ -35,7 +35,7 @@ export interface Category {
 export interface ContactDetails {
     phones: string[];
     emails: string[];
-    address: string[];
+    address: string;
 }
 
 export interface HomepageContent {
