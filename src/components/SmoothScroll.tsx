@@ -1,15 +1,15 @@
-'use client';
+"use client";
 
-import { useEffect } from 'react';
-import Lenis from '@studio-freight/lenis';
+import { useEffect } from "react";
+import Lenis from "@studio-freight/lenis";
 
 export default function SmoothScroll() {
   useEffect(() => {
     const lenis = new Lenis({
       duration: 0.1,
       easing: (t) => t,
-      smoothWheel: true,
-      smoothTouch: true,
+      wheelMultiplier: 1.2,
+      touchMultiplier: 1.5,
     });
 
     function raf(time: number) {
