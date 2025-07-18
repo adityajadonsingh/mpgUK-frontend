@@ -14,7 +14,6 @@ export default function BannerSection({ data }: { data: Banner[] }) {
   return (
     <section className="home-banner w-full">
       <Swiper
-        direction={"vertical"}
         pagination={{ clickable: true }}
         modules={[Pagination, Autoplay]}
         slidesPerView={1}
