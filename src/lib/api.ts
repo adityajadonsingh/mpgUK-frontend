@@ -1,6 +1,6 @@
 // src/lib/api.ts
 
-import { Banner, Blog, Category, ContactDetails, HomepageContent } from "@/types";
+import { Banner, Blog, Category, ContactDetails, HomepageContent, SocialMedia } from "@/types";
 export interface Testimonial {
   id: number;
   name: string;
@@ -52,6 +52,13 @@ export async function getBlogs(): Promise<{ blogs: Blog[] }> {
   const res = await fetch(`${API_URL}/blogs`, { next: { revalidate: 60 } });
   if (!res.ok) {
     throw new Error(`Failed to fetch blogs: ${res.status} ${res.statusText}`);
+  }
+  return res.json();
+}
+export async function getSocialMedia(): Promise<{ social_media_links: SocialMedia[] }> {
+  const res = await fetch(`${API_URL}/social-media`, { next: { revalidate: 60 } });
+  if (!res.ok) {
+    throw new Error(`Failed to fetch social media icons: ${res.status} ${res.statusText}`);
   }
   return res.json();
 }

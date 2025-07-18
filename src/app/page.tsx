@@ -13,6 +13,7 @@ export default async function HomePage() {
   const bannerData: Banner[] = await getHomeBanners();
   const {testimonials} = await getTestimonials();
   const {blogs} = await getBlogs();
+
   return (
     <>
       <BannerSection data={bannerData} />

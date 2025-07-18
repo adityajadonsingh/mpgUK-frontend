@@ -104,3 +104,9 @@ export interface ContactFormData {
   phone_number: string;
   message: string;
 }
+export interface SocialMedia {
+  id: number;
+  platform: string;
+  iconclass: string;
+  url: string;
+}

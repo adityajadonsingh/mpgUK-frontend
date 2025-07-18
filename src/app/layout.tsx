@@ -8,7 +8,7 @@ import "./globals.css";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 
-import { getAllCategorys, getContactDetails } from "@/lib/api";
+import { getAllCategorys, getContactDetails, getSocialMedia } from "@/lib/api";
 import { Category, ContactDetails } from "@/types";
 
 import { SiteDataProvider } from "@/context/SiteDataProvider";
@@ -52,6 +52,7 @@ export default async function RootLayout({
 }) {
   const categories: Category[] = await getAllCategorys();
   const contactDetails: ContactDetails[] = await getContactDetails();
+  const { social_media_links } = await getSocialMedia();
   return (
     <html lang="en">
       <body className={montserrat.className}>
@@ -62,7 +63,7 @@ export default async function RootLayout({
           <SmoothScroll />
           <Header />
           <main>{children}</main>
-          <Footer />
+          <Footer socialMedia={social_media_links} />
         </SiteDataProvider>
       </body>
     </html>

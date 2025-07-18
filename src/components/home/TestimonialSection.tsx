@@ -37,7 +37,7 @@ export default function TestimonialSection({ data }: TestimonialProps) {
               {data.map((testimonial) => {
                 return (
                   <SwiperSlide
-                    key={testimonial.id}
+                    key={testimonial.id+"-testimonial"}
                     className="relative w-full h-full"
                   >
                     <div className="card rounded-md min-h-[280px] shadow-md">
@@ -45,7 +45,7 @@ export default function TestimonialSection({ data }: TestimonialProps) {
                         <div className="img-box w-2/12 relative">
                           <Image
                             src={testimonial.profile_image}
-                            alt={testimonial.name}
+                            alt="testimonial-user"
                             className=" rounded-full object-cover object-center"
                             width={40}
                             height={40}
