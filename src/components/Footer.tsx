@@ -6,7 +6,7 @@ import Link from "next/link";
 
 export default function Footer() {
   const { categories, contactDetails } = useSiteData();
-  console.log(contactDetails)
+  console.log(contactDetails);
   return (
     <footer className="footer">
       <div className="container">
@@ -32,6 +32,87 @@ export default function Footer() {
               more.
             </p>
           </div>
+          
+          <div className="widget">
+            <h4 className="text-2xl mt-3 mb-5 font-semibold">Categories</h4>
+            <ul className="widget-lists">
+              {categories.map((category, idx) => {
+                return (
+                  <>
+                    <li key={`${category.category_name}-${idx}`}>
+                      <div className="details">
+                        <Link href={`/product-category/${category.slug}`}>
+                          {category.category_name}
+                        </Link>
+                      </div>
+                    </li>
+                  </>
+                );
+              })}
+            </ul>
+          </div>
+          <div className="widget">
+            <h4 className="text-2xl mt-3 mb-5 font-semibold">Quick Links</h4>
+            <ul className="widget-lists">
+              
+              <li>
+                <div className="details">
+                  <Link href={`/about-us/`}>
+                    About Us
+                  </Link>
+                </div>
+              </li>
+              <li>
+                <div className="details">
+                  <Link href={`/contact-us/`}>
+                    Contact Us
+                  </Link>
+                </div>
+              </li>
+              <li>
+                <div className="details">
+                  <Link href={`/blogs/`}>
+                    Blogs
+                  </Link>
+                </div>
+              </li>
+              <li>
+                <div className="details">
+                  <Link href={`/products/`}>
+                    Products
+                  </Link>
+                </div>
+              </li>
+              <li>
+                <div className="details">
+                  <Link href={`/product-category/`}>
+                    Product Category
+                  </Link>
+                </div>
+              </li>
+              <li>
+                <div className="details">
+                  <Link href={`/product-catalouge/`}>
+                    Product Catalouge
+                  </Link>
+                </div>
+              </li>
+              <li>
+                <div className="details">
+                  <Link href={`/terms-and-conditions/`}>
+                    Terms & Condition
+                  </Link>
+                </div>
+              </li>
+              <li>
+                <div className="details">
+                  <Link href={`/privacy-policy/`}>
+                    Privacy Policy
+                  </Link>
+                </div>
+              </li>
+            </ul>
+          </div>
           <div className="widget">
             <h4 className="text-2xl mt-3 mb-5 font-semibold">Contact Us</h4>
             <ul className="widget-lists">
@@ -40,7 +121,9 @@ export default function Footer() {
                   <i className="bi bi-telephone-fill text-lg"></i>
                 </div>
                 <div className="details">
-                  <Link href={`tel:`}>{contactDetails[0]?.phones[0]}</Link>
+                  <Link href={`tel:${contactDetails[0]?.phones[0]}`}>
+                    {contactDetails[0]?.phones[0]}
+                  </Link>
                 </div>
               </li>
               <li className="flex gap-x-4">
@@ -48,15 +131,17 @@ export default function Footer() {
                   <i className="bi bi-envelope-fill text-lg"></i>
                 </div>
                 <div className="details">
-                  <Link href={`tel:`}>{contactDetails[0]?.emails[0]}</Link>
+                  <Link href={`mailto:${contactDetails[0]?.emails[0]}`}>
+                    {contactDetails[0]?.emails[0]}
+                  </Link>
                 </div>
               </li>
-              <li className="flex gap-x-4"> 
+              <li className="flex gap-x-4">
                 <div className="icn">
                   <i className="bi bi-geo-alt-fill text-lg"></i>
                 </div>
                 <div className="details">
-                  <Link href={`tel:`}>{contactDetails[0]?.address}</Link>
+                  <span className="text">{contactDetails[0]?.address}</span>
                 </div>
               </li>
             </ul>
