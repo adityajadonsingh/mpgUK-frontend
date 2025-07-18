@@ -100,7 +100,7 @@ export default function Footer() {
               <li>
                 <div className="details">
                   <Link href={`/terms-and-conditions/`}>
-                    Terms & Condition
+                    Terms & Conditions
                   </Link>
                 </div>
               </li>

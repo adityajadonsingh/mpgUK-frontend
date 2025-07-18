@@ -24,16 +24,31 @@ body {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  scroll-behavior: auto;
 }
 input,
 textarea {
   outline: 0;
 }
 
+#lenis-wrapper {
+  height: 100%;
+  overflow: hidden; /* important for Lenis */
+}
+
+#lenis-content {
+  min-height: 100%;
+  will-change: transform;
+}
+
 body {
+  height: 100%;
   color: #3f454c;
   line-height: 1.6;
   position: relative;
+  transform: none !important;
+  will-change: auto;
+  overflow: auto;
 }
 main {
   padding-top: 80px;
@@ -160,8 +175,6 @@ a {
 }
 .swiper-pagination-bullet.swiper-pagination-bullet-active {
   background-color: #f36c23 !important;
-  width: 20px !important;
-  border-radius: 20px !important;
 }
 .features .container {
   padding: 0 100px;
@@ -338,16 +351,16 @@ a {
   }
 }
 
-.footer{
+.footer {
   background-color: #f6f4f5;
   padding: 30px 0;
-  a{
+  a {
     color: #484848;
   }
-  a:hover{
+  a:hover {
     color: #000;
   }
-  li{
+  li {
     padding-bottom: 10px;
   }
 }

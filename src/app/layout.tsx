@@ -14,6 +14,7 @@ import { Category, ContactDetails } from "@/types";
 import { SiteDataProvider } from "@/context/SiteDataProvider";
 
 import { Montserrat } from "next/font/google";
+import SmoothScroll from "@/components/SmoothScroll";
 
 const montserrat = Montserrat({
   subsets: ["latin"],
@@ -44,7 +45,11 @@ export const metadata = {
   // Optional: Add more SEO fields like open graph, twitter, etc.
 };
 
-export default async function RootLayout({ children }: { children: ReactNode }) {
+export default async function RootLayout({
+  children,
+}: {
+  children: ReactNode;
+}) {
   const categories: Category[] = await getAllCategorys();
   const contactDetails: ContactDetails[] = await getContactDetails();
   return (
@@ -54,6 +59,7 @@ export default async function RootLayout({ children }: { children: ReactNode }) 
           categories={categories}
           contactDetails={contactDetails}
         >
+          <SmoothScroll />
           <Header />
           <main>{children}</main>
           <Footer />
