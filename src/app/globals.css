@@ -377,3 +377,11 @@ a {
 background-color: #0c0c0da8;
   z-index: 1;
 }
+.category-banner{
+  height: 40vh;
+}
+.product-grid{
+  .card{
+    height: 300px;
+  }
+}

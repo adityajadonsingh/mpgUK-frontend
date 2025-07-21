@@ -40,7 +40,7 @@ export default function SearchPopup({
   if (!isOpen) return null;
 
   return (
-    <div className="fixed inset-0 z-50 flex items-start justify-center pt-20 backdrop-blur-[2px] bg-[#00000038]">
+    <div className="fixed inset-0 z-[9999] flex items-start justify-center pt-20 backdrop-blur-[2px] bg-[#00000038]">
       <div
         ref={popupRef}
         className="bg-white w-full max-w-md mx-auto p-6 rounded shadow-md animate-slide-down relative"

@@ -6,30 +6,31 @@ interface bread {
   slug_url: string;
 }
 
-export default function PageBanner({
+export default function CategoryBanner({
   bgImg,
   pageName,
   breadcrum,
+  short_description
 }: {
   bgImg: string;
   pageName: string;
   breadcrum: bread[];
+  short_description: string;
 }) {
-  console.log(breadcrum);
   return (
     <>
-      <section className="page-banner flex justify-center items-center relative">
+      <section className="page-banner category-banner flex justify-start items-center relative">
         <Image
           src={bgImg}
           alt={"banner image"}
           fill
           className="object-cover z-0"
         />
-        <div className="text-center relative z-10">
+        <div className="text-start px-10 relative z-10 w-3/5">
           <h1 className="text-4xl capitalize text-white font-bold ">
             {pageName}
           </h1>
-          <ul className="flex justify-center gap-x-2 text-white font-medium text-lg mt-4">
+          <ul className="flex justify-start capitalize my-4 items-center gap-x-2 text-white font-medium text-lg">
             <li>
               <Link className="" href={"/"}>
                 <div className="flex gap-x-1 hover:text-[#f37a38]">
@@ -68,6 +69,7 @@ export default function PageBanner({
               }
             })}
           </ul>
+          <p className="text-white">{short_description}</p>
         </div>
       </section>
     </>

@@ -55,7 +55,6 @@ export default function Footer({
             <ul className="widget-lists">
               {categories.map((category) => {
                 return (
-                  <>
                     <li key={`${category.id}`}>
                       <div className="details">
                         <Link href={`/product-category/${category.slug}`}>
@@ -63,7 +62,6 @@ export default function Footer({
                         </Link>
                       </div>
                     </li>
-                  </>
                 );
               })}
             </ul>

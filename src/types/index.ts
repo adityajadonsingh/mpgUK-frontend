@@ -32,6 +32,29 @@ export interface Category {
   is_active: boolean;
 }
 
+export interface Product {
+  id: number;
+  name: string;
+  slug: string;
+  category: string;
+  descriptions: string;
+  image: string;
+  alt_text: string;
+  meta_title: string;
+  meta_description: string;
+  meta_keywords: string;
+  meta_image: string;
+  og_title: string;
+  og_description: string;
+  twitter_title: string;
+  twitter_decriptions: string;
+  canonical_url: string;
+  robots_tag: string;
+  publisher: null;
+  schema_markup: string;
+  is_active: boolean;
+}
+
 export interface ContactDetails {
   phones: string[];
   emails: string[];
