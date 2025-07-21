@@ -3,14 +3,7 @@ import ProductGrid from "@/components/category/ProductGrid";
 import { getCategoryBySlug, getProductsByCategory } from "@/lib/api";
 import { notFound, redirect } from "next/navigation";
 
-export default async function PaginatedCategoryPage({
-  params,
-}: {
-  params: {
-    category: string;
-    page: string;
-  };
-}) {
+export default async function PaginatedCategoryPage({ params }) {
   const pageNumber = parseInt(params.page) || 1;
   if (pageNumber === 1) {
     redirect(`/product-category/${params.category}`);
