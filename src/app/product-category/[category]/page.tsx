@@ -3,13 +3,13 @@ import ProductGrid from "@/components/category/ProductGrid";
 import { getCategoryBySlug, getProductsByCategory } from "@/lib/api";
 import { notFound } from "next/navigation";
 
-interface CategoryPageProps extends PageProps {
+type Props = {
   params: {
     category: string;
   };
-}
+};
 
-export default async function CategoryPage({ params }: CategoryPageProps) {
+export default async function CategoryPage({ params }: Props) {
   const [category] = await getCategoryBySlug(params.category);
   if (!category) return notFound();
   const { products, totalPages } = await getProductsByCategory(
