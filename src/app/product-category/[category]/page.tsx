@@ -2,8 +2,9 @@ import CategoryBanner from "@/components/category/CategoryBanner";
 import ProductGrid from "@/components/category/ProductGrid";
 import { getCategoryBySlug, getProductsByCategory } from "@/lib/api";
 import { notFound } from "next/navigation";
+import type { PageProps } from "next";
 
-interface CategoryPageProps {
+interface CategoryPageProps extends PageProps {
   params: {
     category: string;
   };
