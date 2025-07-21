@@ -10,7 +10,8 @@ interface CategoryPageProps {
 }
 
 export default async function CategoryPage({ params }: CategoryPageProps) {
-  const [category] = await getCategoryBySlug(params.category);
+  const categoryData = await getCategoryBySlug(params.category);
+  const category = categoryData?.[0];
   if (!category) return notFound();
   const { products, totalPages } = await getProductsByCategory(
     params.category,
