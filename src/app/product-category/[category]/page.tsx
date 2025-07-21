@@ -3,16 +3,12 @@ import ProductGrid from "@/components/category/ProductGrid";
 import { getCategoryBySlug, getProductsByCategory } from "@/lib/api";
 import { notFound } from "next/navigation";
 
-interface CategoryPageProps {
-  params: Readonly<{
-    category: string;
-  }>;
-}
-
-export default async function CategoryPage({ params }: CategoryPageProps) {
-  const categoryData = await getCategoryBySlug(params.category);
-  const category = categoryData?.[0];
-
+export default async function CategoryPage({
+  params,
+}: {
+  params: { category: string };
+}) {
+  const [category] = await getCategoryBySlug(params.category);
   if (!category) return notFound();
 
   const { products, totalPages } = await getProductsByCategory(
@@ -20,23 +16,18 @@ export default async function CategoryPage({ params }: CategoryPageProps) {
     1
   );
 
-  const bread = [
-    {
-      slug_name: "Product Category",
-      slug_url: "/product-category/",
-    },
-    {
-      slug_name: category.category_name,
-      slug_url: `/product-category/${category.slug}/`,
-    },
-  ];
-
   return (
     <>
       <CategoryBanner
         pageName={category.category_name}
         bgImg={category.image}
-        breadcrum={bread}
+        breadcrum={[
+          { slug_name: "Product Category", slug_url: "/product-category/" },
+          {
+            slug_name: category.category_name,
+            slug_url: `/product-category/${category.slug}`,
+          },
+        ]}
         short_description={category.short_description}
       />
       <ProductGrid
