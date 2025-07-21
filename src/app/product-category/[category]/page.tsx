@@ -2,22 +2,24 @@ import CategoryBanner from "@/components/category/CategoryBanner";
 import ProductGrid from "@/components/category/ProductGrid";
 import { getCategoryBySlug, getProductsByCategory } from "@/lib/api";
 import { notFound } from "next/navigation";
-import type { PageProps } from "next";
 
-interface CategoryPageProps extends PageProps {
-  params: {
+interface CategoryPageProps {
+  params: Readonly<{
     category: string;
-  };
+  }>;
 }
 
 export default async function CategoryPage({ params }: CategoryPageProps) {
   const categoryData = await getCategoryBySlug(params.category);
   const category = categoryData?.[0];
+
   if (!category) return notFound();
+
   const { products, totalPages } = await getProductsByCategory(
     params.category,
     1
   );
+
   const bread = [
     {
       slug_name: "Product Category",
@@ -28,8 +30,7 @@ export default async function CategoryPage({ params }: CategoryPageProps) {
       slug_url: `/product-category/${category.slug}/`,
     },
   ];
-  console.log(category);
-  console.log(products, totalPages);
+
   return (
     <>
       <CategoryBanner
