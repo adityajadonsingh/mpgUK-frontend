@@ -1,7 +1,14 @@
 import CategoryBanner from "@/components/category/CategoryBanner";
 import ProductGrid from "@/components/category/ProductGrid";
-import { getCategoryBySlug, getProductsByCategory } from "@/lib/api";
+import { getAllCategorys, getCategoryBySlug, getProductsByCategory } from "@/lib/api";
 import { notFound } from "next/navigation";
+
+export async function generateStaticParams() {
+  const categories = await getAllCategorys(); 
+  return categories.map((category: { slug: string }) => ({
+    category: category.slug,
+  }));
+}
 
 export default async function CategoryPage({
   params,
@@ -11,10 +18,7 @@ export default async function CategoryPage({
   const [category] = await getCategoryBySlug(params.category);
   if (!category) return notFound();
 
-  const { products, totalPages } = await getProductsByCategory(
-    params.category,
-    1
-  );
+  const { products, totalPages } = await getProductsByCategory(params.category, 1);
 
   return (
     <>
