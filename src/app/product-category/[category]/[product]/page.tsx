@@ -2,14 +2,8 @@ import { getProductDetails } from "@/lib/api";
 import { notFound } from "next/navigation";
 import ProductDetails from "@/components/product/ProductDetails";
 
-interface Props {
-  params: {
-    category: string;
-    product: string;
-  };
-}
 
-export default async function ProductDetailPage({ params }: Props) {
+export default async function ProductDetailPage({ params }) {
   const { product } = params;
 
   let productData;
