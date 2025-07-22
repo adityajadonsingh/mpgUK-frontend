@@ -1,5 +1,6 @@
 import CategoryBanner from "@/components/category/CategoryBanner";
 import ProductGrid from "@/components/category/ProductGrid";
+import FooterContent from "@/components/FooterContent";
 import {
   getAllCategorys,
   getCategoryBySlug,
@@ -43,6 +44,7 @@ export default async function CategoryPage({ params }) {
         totalPages={totalPages}
         categorySlug={params.category}
       />
+      <FooterContent content={category.descriptions}/>
     </>
   );
 }

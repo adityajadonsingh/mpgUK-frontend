@@ -72,6 +72,14 @@ export async function getProductsByCategory(slug: string, page: number): Promise
 }
 
 
+export async function getProductDetails(slug: string): Promise<Product> {
+  const res = await fetch(`${API_URL}/products/?slug=${slug}`, { next: { revalidate: 2 } });
+  if (!res.ok) {
+    throw new Error(`Failed to fetch product details: ${res.status} ${res.statusText}`);
+  }
+  const data = await res.json();
+  return data[0];
+}
 export async function getContactDetails(): Promise<ContactDetails[]> {
   const res = await fetch(`${API_URL}/contactdetails`, { next: { revalidate: 2 } });
   if (!res.ok) {

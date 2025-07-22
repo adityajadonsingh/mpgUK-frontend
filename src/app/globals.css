@@ -374,14 +374,146 @@ a {
   left: 0;
   width: 100%;
   height: 100%;
-background-color: #0c0c0da8;
+  background-color: #0c0c0da8;
   z-index: 1;
 }
-.category-banner{
+.category-banner {
   height: 40vh;
 }
-.product-grid{
-  .card{
+.product-grid {
+  .card {
     height: 300px;
+  }
+}
+.pg-des {
+  margin-bottom: 30px;
+  span {
+    font-family: "Montserrat", "Montserrat Fallback" !important;
+  }
+  a,
+  a span {
+    color: #f36c23 !important;
+    text-decoration: none !important;
+    font-weight: 700 !important;
+  }
+  a:hover,
+  a:hover span {
+    color: #ff782f !important;
+  }
+  ol,
+  ul {
+    margin-left: 20px;
+  }
+  ol,
+  ol li {
+    list-style: decimal !important;
+    /* margin-left: 15px; */
+  }
+  ul,
+  ul li {
+    list-style: disc !important;
+    /* margin-left: 15px; */
+  }
+  h2 span,
+  h3 span,
+  h4 span,
+  h5 span,
+  h2,
+  h3,
+  h4,
+  h5 {
+    font-weight: 600 !important;
+  }
+  h2,
+  h2 span {
+    font-size: 25px;
+  }
+  h3,
+  h3 span {
+    font-size: 22px;
+  }
+  h4,
+  h4 span {
+    font-size: 18px;
+  }
+  h5,
+  h5 span {
+    font-size: 18px;
+  }
+}
+
+.pg-des .wrapper .inner-wrapper {
+  padding: 40px 40px 24px;
+  border-radius: 15px;
+}
+
+.pg-des .prose.collapsed {
+  max-height: 400px;
+  overflow: hidden;
+  position: relative;
+}
+
+.read-btn {
+  background-color: #f36c23;
+  color: #fff;
+  text-decoration: none;
+  padding: 5px 20px;
+  border-radius: 20px;
+}
+.read-btn:hover {
+  background-color: #fff;
+  color: #f36c23;
+}
+
+.pg-des .fade-overlay {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 80px;
+  background: linear-gradient(
+    to bottom,
+    rgba(235, 237, 240, 0) 0%,
+    #ebedf0 100%
+  );
+  pointer-events: none;
+  z-index: 10;
+}
+.product-details {
+  .breadcrum {
+    a{
+      color: #505050;
+    }
+    a:hover {
+      color: #f36c23;
+    }
+  }
+  /* .swiper-button-prev {
+    left: 30px;
+  }
+  .swiper-button-next {
+    right: 30px;
+  } */
+  .swiper-button-prev,
+  .swiper-button-next {
+    background-color: #ffffffad;
+    width: 30px;
+    height: 30px;
+    border-radius: 100%;
+    backdrop-filter: blur(2px);
+  }
+  .swiper-button-prev:hover,
+  .swiper-button-next:hover {
+    background-color: #f36c23;
+  }
+  .swiper-button-prev::after,
+  .swiper-button-next::after {
+    font-size: 18px;
+    color: #f36c23;
+  }
+  .swiper-button-prev:hover::after,
+  .swiper-button-next:hover::after {
+    font-size: 20px;
+    color: #fff;
   }
 }
