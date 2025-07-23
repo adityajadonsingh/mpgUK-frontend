@@ -27,11 +27,19 @@ export async function getHomeBanners(): Promise<Banner[]> {
 }
 
 export async function getAllCategorys(): Promise<Category[]> {
-  const res = await fetch(`${API_URL}/categories`, { next: { revalidate: 2 } });
-  if (!res.ok) {
-    throw new Error(`Failed to fetch categories: ${res.status} ${res.statusText}`);
+  try {
+    const res = await fetch(`${API_URL}/categories`, { next: { revalidate: 2 } });
+
+    if (!res.ok) {
+      console.error("Error fetching categories:", res.status, res.statusText);
+      return [];
+    }
+
+    return res.json();
+  } catch (error) {
+    console.error("Failed to fetch categories:", error);
+    return [];
   }
-  return res.json();
 }
 
 export async function getCategoryBySlug(category: string): Promise<Category[]> {
