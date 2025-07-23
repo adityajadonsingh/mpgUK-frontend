@@ -1,6 +1,6 @@
 // src/lib/api.ts
 
-import { Banner, Blog, Category, ContactDetails, HomepageContent, Product, SocialMedia } from "@/types";
+import { Banner, Blog, Category, ContactDetails, HomepageContent, Product, Review, SocialMedia } from "@/types";
 export interface Testimonial {
   id: number;
   name: string;
@@ -44,7 +44,7 @@ export async function getCategoryBySlug(category: string): Promise<Category[]> {
 
 // For category paginated products
 
-const PRODUCTS_PER_PAGE = 2;
+const PRODUCTS_PER_PAGE = 12;
 interface paginatedProducts {
   products: Product[];
   totalPages: number;
@@ -108,6 +108,13 @@ export async function getSocialMedia(): Promise<{ social_media_links: SocialMedi
   const res = await fetch(`${API_URL}/social-media`, { next: { revalidate: 2 } });
   if (!res.ok) {
     throw new Error(`Failed to fetch social media icons: ${res.status} ${res.statusText}`);
+  }
+  return res.json();
+}
+export async function getProductReviews(product_id:number): Promise<Review[]> {
+  const res = await fetch(`${API_URL}/reviews/?product_id=${product_id}`, { next: { revalidate: 2 } });
+  if (!res.ok) {
+    throw new Error(`Failed to fetch product reviews: ${res.status} ${res.statusText}`);
   }
   return res.json();
 }

@@ -32,9 +32,13 @@ export interface Category {
   is_active: boolean;
 }
 
-export interface galleryType {
+export interface GalleryType {
   image: string;
   alt_text: string;
+}
+export interface AttributeType {
+  title: string;
+  value: string;
 }
 
 export interface Product {
@@ -58,7 +62,8 @@ export interface Product {
   publisher: null;
   schema_markup: string;
   is_active: boolean;
-  gallery_images: galleryType[];
+  gallery_images: GalleryType[];
+  attributes: AttributeType[];
 }
 
 export interface ContactDetails {
@@ -138,4 +143,11 @@ export interface SocialMedia {
   platform: string;
   iconclass: string;
   url: string;
+}
+export interface Review {
+  id: number;
+  name: string,
+  email: string,
+  rating: number,
+  comment: string,
 }

@@ -30,6 +30,9 @@ input,
 textarea {
   outline: 0;
 }
+main{
+  position: relative;
+}
 
 #lenis-wrapper {
   height: 100%;
