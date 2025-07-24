@@ -52,7 +52,7 @@ export async function getCategoryBySlug(category: string): Promise<Category[]> {
 
 // For category paginated products
 
-const PRODUCTS_PER_PAGE = 12;
+const PRODUCTS_PER_PAGE = 2;
 interface paginatedProducts {
   products: Product[];
   totalPages: number;
@@ -72,7 +72,6 @@ export async function getProductsByCategory(slug: string, page: number): Promise
   const start = (page - 1) * PRODUCTS_PER_PAGE;
   const end = start + PRODUCTS_PER_PAGE;
   const paginatedProducts = filteredProducts.slice(start, end);
-  console.log(allProducts)
   return {
     products: paginatedProducts,
     totalPages,
@@ -80,6 +79,23 @@ export async function getProductsByCategory(slug: string, page: number): Promise
 }
 
 
+export async function getAllProducts(page: number): Promise<paginatedProducts> {
+  const res = await fetch(`${API_URL}/products/`, { next: { revalidate: 2 } });
+  const allProducts = await res.json();
+
+  const total = allProducts.length;
+  const totalPages = Math.ceil(total / PRODUCTS_PER_PAGE);
+
+  // Paginate
+  const start = (page - 1) * PRODUCTS_PER_PAGE;
+  const end = start + PRODUCTS_PER_PAGE;
+  const paginatedProducts = allProducts.slice(start, end);
+  console.log(allProducts)
+  return {
+    products: paginatedProducts,
+    totalPages,
+  };
+}
 export async function getProductDetails(slug: string): Promise<Product> {
   const res = await fetch(`${API_URL}/products/?slug=${slug}`, { next: { revalidate: 2 } });
   if (!res.ok) {

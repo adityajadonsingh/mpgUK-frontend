@@ -14,7 +14,7 @@ export default function ProductGrid({
   products: Product[];
   currentPage: number;
   totalPages: number;
-  categorySlug: string;
+  categorySlug: string | null;
 }) {
   const [isMobile, setIsMobile] = useState(false);
 
@@ -23,14 +23,18 @@ export default function ProductGrid({
   }, []);
 
   const showPagination = totalPages > 1;
-  console.log(products)
+  console.log(products);
   return (
     <section className="product-grid my-12">
       <div className="container mx-auto">
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
           {products.map((product, index) => (
-
-            <Link href={`/product-category/${product.category.replace(/ /g, "-").toLowerCase()}/${product.slug}`} key={index}>
+            <Link
+              href={`/product-category/${product.category
+                .replace(/ /g, "-")
+                .toLowerCase()}/${product.slug}`}
+              key={index}
+            >
               <div className="card group relative overflow-hidden rounded-lg shadow-md">
                 <Image
                   src={product.image}
@@ -53,9 +57,13 @@ export default function ProductGrid({
           <div className="pagination text-center my-10 space-x-2">
             {currentPage > 1 && (
               <Link
-                href={`/product-category/${categorySlug}/page/${
-                  currentPage - 1
-                }`}
+                href={
+                  categorySlug
+                    ? `/product-category/${categorySlug}/page/${
+                        currentPage - 1
+                      }`
+                    : `/products/page/${currentPage - 1}`
+                }
                 className="px-4 py-2 bg-gray-200 rounded"
               >
                 « <span className="sm:inline hidden">Previous</span>
@@ -88,9 +96,13 @@ export default function ProductGrid({
                   )}
                   <Link
                     href={
-                      page === 1
-                        ? `/product-category/${categorySlug}`
-                        : `/product-category/${categorySlug}/page/${page}`
+                      categorySlug
+                        ? page === 1
+                          ? `/product-category/${categorySlug}`
+                          : `/product-category/${categorySlug}/page/${page}`
+                        : page === 1
+                        ? `/products`
+                        : `/products/page/${page}`
                     }
                     className={`px-4 py-2 rounded font-semibold ${
                       currentPage === page
@@ -105,9 +117,13 @@ export default function ProductGrid({
 
             {currentPage < totalPages && (
               <Link
-                href={`/product-category/${categorySlug}/page/${
-                  currentPage + 1
-                }`}
+                href={
+                  categorySlug
+                    ? `/product-category/${categorySlug}/page/${
+                        currentPage + 1
+                      }`
+                    : `/products/page/${currentPage + 1}`
+                }
                 className="px-4 py-2 bg-gray-200 rounded"
               >
                 <span className="sm:inline hidden">Next</span> »

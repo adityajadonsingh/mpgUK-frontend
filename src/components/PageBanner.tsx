@@ -15,7 +15,6 @@ export default function PageBanner({
   pageName: string;
   breadcrum: bread[];
 }) {
-  console.log(breadcrum);
   return (
     <>
       <section className="page-banner flex justify-center items-center relative">
