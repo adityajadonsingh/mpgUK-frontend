@@ -4,8 +4,8 @@ import ProductDetails from "@/components/product/ProductDetails";
 import { Product, Review } from "@/types";
 import ProductReviews from "@/components/product/ProductReviews";
 
-export default async function ProductDetailPage({ params }) {
-  const { product } = params;
+export default async function ProductDetailPage({ params } : {params : Promise<{product : string}>}) {
+  const { product } = await params;
 
   let productData: Product;
   let reviews: Review[];

@@ -15,12 +15,17 @@ export async function generateStaticParams() {
   }));
 }
 
-export default async function CategoryPage({ params }) {
-  const [category] = await getCategoryBySlug(params.category);
+export default async function CategoryPage({
+  params,
+}: {
+  params: Promise<{ category: string }>;
+}) {
+  const getParams = await params;
+  const [category] = await getCategoryBySlug(getParams.category);
   if (!category) return notFound();
 
   const { products, totalPages } = await getProductsByCategory(
-    params.category,
+    getParams.category,
     1
   );
 
@@ -42,9 +47,9 @@ export default async function CategoryPage({ params }) {
         products={products}
         currentPage={1}
         totalPages={totalPages}
-        categorySlug={params.category}
+        categorySlug={getParams.category}
       />
-      <FooterContent content={category.descriptions}/>
+      <FooterContent content={category.descriptions} />
     </>
   );
 }

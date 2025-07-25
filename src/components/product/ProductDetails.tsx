@@ -3,7 +3,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useState } from "react";
-
+import { Swiper as SwiperType } from "swiper";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation, Thumbs } from "swiper/modules";
 
@@ -34,7 +34,7 @@ export default function ProductDetails({
   gallery: GalleryType[];
   attributes: AttributeType[];
 }) {
-  const [thumbsSwiper, setThumbsSwiper] = useState(null);
+  const [thumbsSwiper, setThumbsSwiper] = useState<SwiperType | null>(null);
   const [lightboxOpen, setLightboxOpen] = useState(false);
   const [lightboxIndex, setLightboxIndex] = useState(0);
   const [safeDescription, setSafeDescription] = useState("");
@@ -137,12 +137,20 @@ export default function ProductDetails({
 
             <div className="product-content">
               <ul className="breadcrum font-medium flex gap-x-2 flex-wrap capitalize">
-                <li><Link href="/">Home</Link></li>
-                <li>/</li>
-                <li><Link href="/product-category/">Product Category</Link></li>
+                <li>
+                  <Link href="/">Home</Link>
+                </li>
                 <li>/</li>
                 <li>
-                  <Link href={`/product-category/${category.replace(/ /g, "-").toLowerCase()}/`}>
+                  <Link href="/product-category/">Product Category</Link>
+                </li>
+                <li>/</li>
+                <li>
+                  <Link
+                    href={`/product-category/${category
+                      .replace(/ /g, "-")
+                      .toLowerCase()}/`}
+                  >
                     {category}
                   </Link>
                 </li>
@@ -164,15 +172,23 @@ export default function ProductDetails({
                   return (
                     <div key={index} className="mb-0 border-b overflow-hidden">
                       <button
-                        onClick={() => setActiveAccordion(isOpen ? null : index)}
+                        onClick={() =>
+                          setActiveAccordion(isOpen ? null : index)
+                        }
                         className="w-full text-left px-4 py-3 bg-white hover:bg-gray-100 cursor-pointer font-semibold flex justify-between items-center"
                       >
                         <span>{item.title}</span>
-                        <i className={`bi ${isOpen ? "bi-dash" : "bi-plus"} text-lg`} />
+                        <i
+                          className={`bi ${
+                            isOpen ? "bi-dash" : "bi-plus"
+                          } text-lg`}
+                        />
                       </button>
                       <div
                         className={`transition-all duration-300 ease-in-out overflow-hidden ${
-                          isOpen ? "max-h-[500px] py-3 pt-0 px-4" : "max-h-0 px-4 py-0"
+                          isOpen
+                            ? "max-h-[500px] py-3 pt-0 px-4"
+                            : "max-h-0 px-4 py-0"
                         }`}
                       >
                         <p className="text-sm text-gray-700">{item.value}</p>
