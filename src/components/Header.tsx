@@ -18,11 +18,12 @@ export default function Header() {
             {/* LOGO */}
             <div className="logo basis-1/4">
               <div className="wrap relative w-[160px] h-[32px]">
-                <Link href="/">
+                <Link className="" href="/">
                   <Image
                     src="https://mpgstone.com/wp-content/uploads/2023/09/logo-5.svg"
                     alt="logo"
                     fill
+                    priority
                     className="object-contain"
                   />
                 </Link>

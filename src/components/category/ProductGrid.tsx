@@ -23,7 +23,6 @@ export default function ProductGrid({
   }, []);
 
   const showPagination = totalPages > 1;
-  console.log(products);
   return (
     <section className="product-grid my-12">
       <div className="container mx-auto">

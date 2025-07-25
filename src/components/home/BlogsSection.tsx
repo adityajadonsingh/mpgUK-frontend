@@ -48,7 +48,7 @@ export default function BlogsSection({ data }: { data: Blog[] }) {
                         <div className="img-box rounded-sm w-full overflow-hidden h-[250px] relative">
                           <Image
                             src={blog.image}
-                            alt={blog.alt_text}
+                            alt={blog.alt_text || blog.title}
                             fill
                             className="object-cover group-hover:scale-[1.05] rounded-sm object-center"
                           />

@@ -4,7 +4,6 @@ import { getAllProducts } from "@/lib/api";
 
 export default async function ProductsPage() {
   const { products, totalPages } = await getAllProducts(1);
-  console.log(products)
   return (
     <>
       <PageBanner

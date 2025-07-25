@@ -1,10 +1,11 @@
 import ProductGrid from "@/components/category/ProductGrid";
 import PageBanner from "@/components/PageBanner";
 import { getAllProducts } from "@/lib/api";
-import { notFound, redirect } from "next/navigation";
+import { redirect } from "next/navigation";
 
 export default async function ProductsPagePaginated({ params }) {
-  const pageNumber = parseInt(params.page) || 1;
+  const getPageNumber = await params.page;
+  const pageNumber = parseInt(getPageNumber) || 1;
   if (pageNumber === 1) {
     redirect("/products/");
   }

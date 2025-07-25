@@ -90,7 +90,6 @@ export async function getAllProducts(page: number): Promise<paginatedProducts> {
   const start = (page - 1) * PRODUCTS_PER_PAGE;
   const end = start + PRODUCTS_PER_PAGE;
   const paginatedProducts = allProducts.slice(start, end);
-  console.log(allProducts)
   return {
     products: paginatedProducts,
     totalPages,
@@ -103,6 +102,28 @@ export async function getProductDetails(slug: string): Promise<Product> {
   }
   const data = await res.json();
   return data[0];
+}
+interface paginatedBlogs {
+  blogs: Blog[];
+  totalPages: number;
+}
+const BLOGS_PER_PAGE = 2;
+export async function getBlogsPaginated(page: number): Promise<paginatedBlogs> {
+  const res = await fetch(`${API_URL}/blogs`, { next: { revalidate: 2 } });
+  const rawBlogs = await res.json();
+  const allBlogs : Blog[] = rawBlogs.blogs;
+  const total = allBlogs.length;
+  const totalPages = Math.ceil(total / BLOGS_PER_PAGE);
+
+  // Paginate
+  const start = (page - 1) * BLOGS_PER_PAGE;
+  const end = start + BLOGS_PER_PAGE;
+  const paginatedBlogs = allBlogs.slice(start, end);
+  return {
+    blogs: paginatedBlogs,
+    totalPages,
+  };
+  // return null
 }
 export async function getContactDetails(): Promise<ContactDetails[]> {
   const res = await fetch(`${API_URL}/contactdetails`, { next: { revalidate: 2 } });
@@ -135,7 +156,7 @@ export async function getSocialMedia(): Promise<{ social_media_links: SocialMedi
   }
   return res.json();
 }
-export async function getProductReviews(product_id:number): Promise<Review[]> {
+export async function getProductReviews(product_id: number): Promise<Review[]> {
   const res = await fetch(`${API_URL}/reviews/?product_id=${product_id}`, { next: { revalidate: 2 } });
   if (!res.ok) {
     throw new Error(`Failed to fetch product reviews: ${res.status} ${res.statusText}`);
