@@ -138,8 +138,8 @@ export async function POST(request: Request) {
             JSON.stringify({ message: "Emails sent successfully" }),
             { status: 200 }
         );
-    } catch (error) {
-        console.error("Email error:", error as any);
+    } catch (error: unknown) {
+        console.error("Email error:", error);
         return new Response(
             JSON.stringify({ message: "Failed to send email" }),
             { status: 500 }
