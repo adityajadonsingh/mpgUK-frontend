@@ -66,7 +66,7 @@ export default function ContactSection() {
     <section className="contact-section my-10">
       <div className="container">
         <div className="grid grid-cols-2">
-          <div className="form w-8/12 py-8 mx-auto">
+          <div className="form w-10/12 py-8 mx-auto">
             <h4 className="text-3xl font-semibold">Having Any Query?</h4>
             <p className="my-3">
               Lorem ipsum dolor, sit amet consectetur adipisicing elit. Ut

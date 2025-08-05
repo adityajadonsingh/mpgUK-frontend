@@ -1,7 +1,7 @@
 import ProductGrid from "@/components/category/ProductGrid";
 import PageBanner from "@/components/PageBanner";
 import { getAllProducts } from "@/lib/api";
-import { redirect } from "next/navigation";
+import { notFound, redirect } from "next/navigation";
 
 export default async function ProductsPagePaginated({
   params,
@@ -15,7 +15,7 @@ export default async function ProductsPagePaginated({
     redirect("/products/");
   }
   const { products, totalPages } = await getAllProducts(pageNumber);
-
+  if (pageNumber > totalPages) return notFound();
   console.log(products);
   return (
     <>

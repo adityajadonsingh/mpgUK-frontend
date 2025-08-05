@@ -48,7 +48,7 @@ export default function CategorySlider({
                   key={category.id}
                   className="relative w-full h-full"
                 >
-                  <div className="card">
+                  <div className="card shadow-md">
                     <Link href={`/product-category/${category.slug}/`}>
                       <div className="img-box">
                         <Image

@@ -13,7 +13,7 @@ export default function BlogsSection({ data }: { data: Blog[] }) {
       <section className="blogs-home">
         <div className="container">
           <h3 className="heading text-center text-3xl font-semibold ">
-            What Our Clients Say About Us
+            Latest Blogs
           </h3>
           <div className="slider">
             <Swiper
@@ -22,7 +22,7 @@ export default function BlogsSection({ data }: { data: Blog[] }) {
               navigation
               slidesPerView={3}
               spaceBetween={30}
-              className="h-full w-full"
+              className="h-full w-full pb-3"
               autoplay={{
                 delay: 6000,
                 disableOnInteraction: false,
@@ -43,9 +43,9 @@ export default function BlogsSection({ data }: { data: Blog[] }) {
                 );
                 return (
                   <SwiperSlide key={blog.id} className="relative w-full h-full">
-                    <div className="card group min-h-[280px]">
+                    <div className="card relative group shadow-md min-h-[280px]">
                       <Link href={`/blogs/${blog.slug}/`}>
-                        <div className="img-box rounded-sm w-full overflow-hidden h-[250px] relative">
+                        <div className="img-box rounded-sm w-full overflow-hidden h-[300px] relative">
                           <Image
                             src={blog.image}
                             alt={blog.alt_text || blog.title}
@@ -53,7 +53,7 @@ export default function BlogsSection({ data }: { data: Blog[] }) {
                             className="object-cover group-hover:scale-[1.05] rounded-sm object-center"
                           />
                         </div>
-                        <div className="content  mt-5">
+                        <div className="content mt-5">
                           <span className="block text-sm text-[#f36c23] font-medium">
                             Date Posted : {formattedDate} | Author : Jaya
                             Tripathi

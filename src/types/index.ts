@@ -151,3 +151,9 @@ export interface Review {
   rating: number,
   comment: string,
 }
+export interface BlogCategory{
+  id: number;
+  name: string;
+  slug: string;
+  blog_count: number;
+}

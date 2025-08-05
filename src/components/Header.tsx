@@ -20,7 +20,7 @@ export default function Header() {
               <div className="wrap relative w-[160px] h-[32px]">
                 <Link className="" href="/">
                   <Image
-                    src="https://mpgstone.com/wp-content/uploads/2023/09/logo-5.svg"
+                    src="/media/logo.svg"
                     alt="logo"
                     fill
                     priority

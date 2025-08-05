@@ -1,17 +1,24 @@
 // src/lib/api.ts
 
-import { Banner, Blog, Category, ContactDetails, HomepageContent, Product, Review, SocialMedia } from "@/types";
-export interface Testimonial {
-  id: number;
-  name: string;
-  profile_image: string;
-  rating: number;
-  testimonial: string;
+import { Banner, Blog, BlogCategory, Category, ContactDetails, HomepageContent, Product, Review, SocialMedia, Testimonial } from "@/types";
+
+interface paginatedBlogs {
+  blogs: Blog[];
+  totalPages: number;
 }
+
+interface paginatedProducts {
+  products: Product[];
+  totalPages: number;
+}
+
 const API_URL = process.env.API_URL!;
+const revalidateTime = 2;
+const PRODUCTS_PER_PAGE = 2;
+const BLOGS_PER_PAGE = 2;
 
 export async function getHomePageData(): Promise<HomepageContent> {
-  const res = await fetch(`${API_URL}/homepage-content`, { next: { revalidate: 2 } });
+  const res = await fetch(`${API_URL}/homepage-content`, { next: { revalidate: revalidateTime } });
   if (!res.ok) {
     throw new Error(`Failed to fetch home page content: ${res.status} ${res.statusText}`);
   }
@@ -19,7 +26,7 @@ export async function getHomePageData(): Promise<HomepageContent> {
 }
 
 export async function getHomeBanners(): Promise<Banner[]> {
-  const res = await fetch(`${API_URL}/banners`, { next: { revalidate: 2 } });
+  const res = await fetch(`${API_URL}/banners`, { next: { revalidate: revalidateTime } });
   if (!res.ok) {
     throw new Error(`Failed to fetch banners: ${res.status} ${res.statusText}`);
   }
@@ -28,7 +35,7 @@ export async function getHomeBanners(): Promise<Banner[]> {
 
 export async function getAllCategorys(): Promise<Category[]> {
   try {
-    const res = await fetch(`${API_URL}/categories`, { next: { revalidate: 2 } });
+    const res = await fetch(`${API_URL}/categories`, { next: { revalidate: revalidateTime } });
 
     if (!res.ok) {
       console.error("Error fetching categories:", res.status, res.statusText);
@@ -43,7 +50,7 @@ export async function getAllCategorys(): Promise<Category[]> {
 }
 
 export async function getCategoryBySlug(category: string): Promise<Category[]> {
-  const res = await fetch(`${API_URL}/categories/?category_slug=${category}`, { next: { revalidate: 2 } });
+  const res = await fetch(`${API_URL}/categories/?category_slug=${category}`, { next: { revalidate: revalidateTime } });
   if (!res.ok) {
     throw new Error(`Failed to fetch category: ${res.status} ${res.statusText}`);
   }
@@ -52,13 +59,8 @@ export async function getCategoryBySlug(category: string): Promise<Category[]> {
 
 // For category paginated products
 
-const PRODUCTS_PER_PAGE = 2;
-interface paginatedProducts {
-  products: Product[];
-  totalPages: number;
-}
 export async function getProductsByCategory(slug: string, page: number): Promise<paginatedProducts> {
-  const res = await fetch(`${API_URL}/products/`, { next: { revalidate: 2 } });
+  const res = await fetch(`${API_URL}/products/`, { next: { revalidate: revalidateTime } });
   const allProducts = await res.json();
 
   const filteredProducts = allProducts.filter(
@@ -77,10 +79,8 @@ export async function getProductsByCategory(slug: string, page: number): Promise
     totalPages,
   };
 }
-
-
 export async function getAllProducts(page: number): Promise<paginatedProducts> {
-  const res = await fetch(`${API_URL}/products/`, { next: { revalidate: 2 } });
+  const res = await fetch(`${API_URL}/products/`, { next: { revalidate: revalidateTime } });
   const allProducts = await res.json();
 
   const total = allProducts.length;
@@ -96,22 +96,17 @@ export async function getAllProducts(page: number): Promise<paginatedProducts> {
   };
 }
 export async function getProductDetails(slug: string): Promise<Product> {
-  const res = await fetch(`${API_URL}/products/?slug=${slug}`, { next: { revalidate: 2 } });
+  const res = await fetch(`${API_URL}/products/?slug=${slug}`, { next: { revalidate: revalidateTime } });
   if (!res.ok) {
     throw new Error(`Failed to fetch product details: ${res.status} ${res.statusText}`);
   }
   const data = await res.json();
   return data[0];
 }
-interface paginatedBlogs {
-  blogs: Blog[];
-  totalPages: number;
-}
-const BLOGS_PER_PAGE = 2;
 export async function getBlogsPaginated(page: number): Promise<paginatedBlogs> {
-  const res = await fetch(`${API_URL}/blogs`, { next: { revalidate: 2 } });
+  const res = await fetch(`${API_URL}/blogs`, { next: { revalidate: revalidateTime } });
   const rawBlogs = await res.json();
-  const allBlogs : Blog[] = rawBlogs.blogs;
+  const allBlogs: Blog[] = rawBlogs.blogs;
   const total = allBlogs.length;
   const totalPages = Math.ceil(total / BLOGS_PER_PAGE);
 
@@ -126,15 +121,16 @@ export async function getBlogsPaginated(page: number): Promise<paginatedBlogs> {
   // return null
 }
 export async function getContactDetails(): Promise<ContactDetails[]> {
-  const res = await fetch(`${API_URL}/contactdetails`, { next: { revalidate: 2 } });
+  const res = await fetch(`${API_URL}/contactdetails`, { next: { revalidate: revalidateTime } });
   if (!res.ok) {
     throw new Error(`Failed to fetch contact details: ${res.status} ${res.statusText}`);
   }
   return res.json();
 }
 
+
 export async function getTestimonials(): Promise<{ testimonials: Testimonial[] }> {
-  const res = await fetch(`${API_URL}/testimonials`, { next: { revalidate: 2 } });
+  const res = await fetch(`${API_URL}/testimonials`, { next: { revalidate: revalidateTime } });
   if (!res.ok) {
     throw new Error(`Failed to fetch testimonials: ${res.status} ${res.statusText}`);
   }
@@ -142,25 +138,53 @@ export async function getTestimonials(): Promise<{ testimonials: Testimonial[] }
 }
 
 export async function getBlogs(): Promise<{ blogs: Blog[] }> {
-  const res = await fetch(`${API_URL}/blogs`, { next: { revalidate: 2 } });
+  const res = await fetch(`${API_URL}/blogs`, { next: { revalidate: revalidateTime } });
   if (!res.ok) {
     throw new Error(`Failed to fetch blogs: ${res.status} ${res.statusText}`);
   }
   return res.json();
 }
 
+export async function getSingleBlog(slug: string): Promise<Blog | undefined> {
+  const res = await fetch(`${API_URL}/blogs`, { next: { revalidate: revalidateTime } });
+
+  if (!res.ok) {
+    throw new Error(`Failed to fetch blogs for single blog: ${res.status} ${res.statusText}`);
+  }
+
+  const data: { blogs: Blog[] } = await res.json();
+
+  const blog = data.blogs.find((b) => b.slug === slug);
+
+  return blog;
+}
+export async function getAllBlogCategory(): Promise<BlogCategory[]> {
+  const res = await fetch(`${API_URL}/blog-categories`, { next: { revalidate: revalidateTime } });
+  if (!res.ok) {
+    throw new Error(`Failed to fetch blog categories: ${res.status} ${res.statusText}`);
+  }
+  return res.json();
+}
+// export async function getBlogPerCategory(category: string): Promise<BlogCategory[]> {
+//   const res = await fetch(`${API_URL}/blogs`, { next: { revalidate: revalidateTime } });
+//   if (!res.ok) {
+//     throw new Error(`Failed to fetch blogs per categories: ${res.status} ${res.statusText}`);
+//   }
+//   return res.json();
+// }
 export async function getSocialMedia(): Promise<{ social_media_links: SocialMedia[] }> {
-  const res = await fetch(`${API_URL}/social-media`, { next: { revalidate: 2 } });
+  const res = await fetch(`${API_URL}/social-media`, { next: { revalidate: revalidateTime } });
   if (!res.ok) {
     throw new Error(`Failed to fetch social media icons: ${res.status} ${res.statusText}`);
   }
   return res.json();
 }
 export async function getProductReviews(product_id: number): Promise<Review[]> {
-  const res = await fetch(`${API_URL}/reviews/?product_id=${product_id}`, { next: { revalidate: 2 } });
+  const res = await fetch(`${API_URL}/reviews/?product_id=${product_id}`, { next: { revalidate: revalidateTime } });
   if (!res.ok) {
     throw new Error(`Failed to fetch product reviews: ${res.status} ${res.statusText}`);
   }
   return res.json();
 }
+
 

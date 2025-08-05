@@ -16,7 +16,7 @@ export default async function PaginatedCategoryPage({ params } : {params : Promi
     getParams.category,
     pageNumber
   );
-
+  if(pageNumber > totalPages) return notFound();
   const bread = [
     {
       slug_name: "Product Category",

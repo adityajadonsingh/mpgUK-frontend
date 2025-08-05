@@ -14,13 +14,11 @@ export default function Footer({
   return (
     <footer className="footer">
       <div className="container">
-        <div className="grid grid-cols-[30%_16%_15%_33%] gap-4">
+        <div className="grid grid-cols-[25%_17%_16%_35%] gap-4">
           <div className="logo">
             <div className="img relative h-[52px] w-[180px] mb-3">
               <Image
-                src={
-                  "https://mpgstone.com/wp-content/uploads/2023/09/logo-5.svg"
-                }
+                src="/media/logo.svg"
                 alt={"logo"}
                 fill
                 className="object-contain"
