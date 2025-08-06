@@ -16,7 +16,7 @@ export default async function BlogPage() {
           },
         ]}
       />
-      <BlogsGrid currentPage={1} totalPages={totalPages} blogs={blogs}/>
+      <BlogsGrid currentPage={1} totalPages={totalPages} blogs={blogs} isCategoryBlog={false}/>
     </>
   );
 }

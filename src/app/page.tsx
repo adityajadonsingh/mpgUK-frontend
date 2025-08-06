@@ -1,3 +1,4 @@
+import FooterContent from "@/components/FooterContent";
 import AboutSection from "@/components/home/AboutSection";
 import BannerSection from "@/components/home/BannerSection";
 import BlogsSection from "@/components/home/BlogsSection";
@@ -32,7 +33,7 @@ export default async function HomePage() {
       <TestimonialSection data={testimonials} />
       <BlogsSection data={blogs} />
       <ContactSection />
-
+      <FooterContent content={homepageContent.content}/>
     </>
   );
 }

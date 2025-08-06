@@ -103,23 +103,7 @@ export async function getProductDetails(slug: string): Promise<Product> {
   const data = await res.json();
   return data[0];
 }
-export async function getBlogsPaginated(page: number): Promise<paginatedBlogs> {
-  const res = await fetch(`${API_URL}/blogs`, { next: { revalidate: revalidateTime } });
-  const rawBlogs = await res.json();
-  const allBlogs: Blog[] = rawBlogs.blogs;
-  const total = allBlogs.length;
-  const totalPages = Math.ceil(total / BLOGS_PER_PAGE);
 
-  // Paginate
-  const start = (page - 1) * BLOGS_PER_PAGE;
-  const end = start + BLOGS_PER_PAGE;
-  const paginatedBlogs = allBlogs.slice(start, end);
-  return {
-    blogs: paginatedBlogs,
-    totalPages,
-  };
-  // return null
-}
 export async function getContactDetails(): Promise<ContactDetails[]> {
   const res = await fetch(`${API_URL}/contactdetails`, { next: { revalidate: revalidateTime } });
   if (!res.ok) {
@@ -144,7 +128,22 @@ export async function getBlogs(): Promise<{ blogs: Blog[] }> {
   }
   return res.json();
 }
+export async function getBlogsPaginated(page: number): Promise<paginatedBlogs> {
+  const res = await fetch(`${API_URL}/blogs`, { next: { revalidate: revalidateTime } });
+  const rawBlogs = await res.json();
+  const allBlogs: Blog[] = rawBlogs.blogs;
+  const total = allBlogs.length;
+  const totalPages = Math.ceil(total / BLOGS_PER_PAGE);
 
+  // Paginate
+  const start = (page - 1) * BLOGS_PER_PAGE;
+  const end = start + BLOGS_PER_PAGE;
+  const paginatedBlogs = allBlogs.slice(start, end);
+  return {
+    blogs: paginatedBlogs,
+    totalPages,
+  };
+}
 export async function getSingleBlog(slug: string): Promise<Blog | undefined> {
   const res = await fetch(`${API_URL}/blogs`, { next: { revalidate: revalidateTime } });
 
@@ -165,13 +164,22 @@ export async function getAllBlogCategory(): Promise<BlogCategory[]> {
   }
   return res.json();
 }
-// export async function getBlogPerCategory(category: string): Promise<BlogCategory[]> {
-//   const res = await fetch(`${API_URL}/blogs`, { next: { revalidate: revalidateTime } });
-//   if (!res.ok) {
-//     throw new Error(`Failed to fetch blogs per categories: ${res.status} ${res.statusText}`);
-//   }
-//   return res.json();
-// }
+export async function getBlogPerCategory(categorySlug: string, page: number): Promise<paginatedBlogs> {
+const res = await fetch(`${API_URL}/blogs`, { next: { revalidate: revalidateTime } });
+  const rawBlogs = await res.json();
+  const allBlogs: Blog[] = rawBlogs.blogs.filter((blog : Blog) => blog.category.slug === categorySlug);
+  const total = allBlogs.length;
+  const totalPages = Math.ceil(total / BLOGS_PER_PAGE);
+
+  // Paginate
+  const start = (page - 1) * BLOGS_PER_PAGE;
+  const end = start + BLOGS_PER_PAGE;
+  const paginatedBlogs = allBlogs.slice(start, end);
+  return {
+    blogs: paginatedBlogs,
+    totalPages,
+  };
+}
 export async function getSocialMedia(): Promise<{ social_media_links: SocialMedia[] }> {
   const res = await fetch(`${API_URL}/social-media`, { next: { revalidate: revalidateTime } });
   if (!res.ok) {

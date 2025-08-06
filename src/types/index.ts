@@ -130,6 +130,7 @@ export interface Blog {
   publisher: string;
   schema_markup: string;
   date_posted: string;
+  category: BlogCategory;
 }
 
 export interface ContactFormData {

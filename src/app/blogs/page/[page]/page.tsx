@@ -20,7 +20,7 @@ export default async function BlogPaginatedPage({ params }: {params: Promise<{pa
           },
         ]}
       />
-      <BlogsGrid currentPage={pageNumber} totalPages={totalPages} blogs={blogs} />
+      <BlogsGrid currentPage={pageNumber} totalPages={totalPages} blogs={blogs} isCategoryBlog={false} />
     </>
   );
 }
