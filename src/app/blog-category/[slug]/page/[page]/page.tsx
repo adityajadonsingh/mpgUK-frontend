@@ -11,9 +11,9 @@ type Params = {
 export default async function BlogPaginatedPage({
   params,
 }: {
-  params: Params;
+  params: Promise<Params>;
 }) {
-  const { slug, page } = params;
+  const { slug, page } = await params;
   const pageNumber = parseInt(page);
   const allCategoryBlogs = await getAllBlogCategory();
   const checkSlug = allCategoryBlogs.find((category) => category.slug === slug);
