@@ -1,6 +1,6 @@
 // src/lib/api.ts
 
-import { Banner, Blog, BlogCategory, Category, ContactDetails, HomepageContent, Product, Review, SocialMedia, Testimonial } from "@/types";
+import { Banner, Blog, BlogCategory, Category, ContactDetails, HomepageContent, Product, ProductCatalouge, Review, SocialMedia, Testimonial } from "@/types";
 
 interface paginatedBlogs {
   blogs: Blog[];
@@ -103,7 +103,13 @@ export async function getProductDetails(slug: string): Promise<Product> {
   const data = await res.json();
   return data[0];
 }
-
+export async function getProductReviews(product_id: number): Promise<Review[]> {
+  const res = await fetch(`${API_URL}/reviews/?product_id=${product_id}`, { next: { revalidate: revalidateTime } });
+  if (!res.ok) {
+    throw new Error(`Failed to fetch product reviews: ${res.status} ${res.statusText}`);
+  }
+  return res.json();
+}
 export async function getContactDetails(): Promise<ContactDetails[]> {
   const res = await fetch(`${API_URL}/contactdetails`, { next: { revalidate: revalidateTime } });
   if (!res.ok) {
@@ -187,12 +193,13 @@ export async function getSocialMedia(): Promise<{ social_media_links: SocialMedi
   }
   return res.json();
 }
-export async function getProductReviews(product_id: number): Promise<Review[]> {
-  const res = await fetch(`${API_URL}/reviews/?product_id=${product_id}`, { next: { revalidate: revalidateTime } });
+export async function getProductCatalouge(): Promise<ProductCatalouge[]> {
+  const res = await fetch(`${API_URL}/product-catalogues`, { next: { revalidate: revalidateTime } });
   if (!res.ok) {
-    throw new Error(`Failed to fetch product reviews: ${res.status} ${res.statusText}`);
+    throw new Error(`Failed to fetch product catalouges: ${res.status} ${res.statusText}`);
   }
   return res.json();
 }
+
 
 

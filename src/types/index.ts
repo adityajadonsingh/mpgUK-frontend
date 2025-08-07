@@ -158,3 +158,9 @@ export interface BlogCategory{
   slug: string;
   blog_count: number;
 }
+export interface ProductCatalouge{
+  id: number;
+  name: string;
+  thumbnail: string;
+  pdf_file: string;
+}

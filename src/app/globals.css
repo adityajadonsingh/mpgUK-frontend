@@ -496,7 +496,7 @@ a {
   }
   h3,
   h3 span {
-    font-size: 22px;
+    font-size: 20px;
   }
   h4,
   h4 span {
@@ -504,7 +504,7 @@ a {
   }
   h5,
   h5 span {
-    font-size: 18px;
+    font-size: 16px;
   }
 }
 
@@ -639,5 +639,31 @@ a {
   }
   .share .icn:hover {
     background-color: #f36c23;
+  }
+}
+.contact-page{
+  .details{
+    li{
+      min-height: 100px;
+    }
+    .icn{
+      width: 40px;
+      height: 40px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      border-radius: 100%;
+      background-color: #5a5c5d;
+      color: #fff;
+    }
+    .links{
+      width: calc(100% - 40px);
+    }
+    a, span{
+      font-weight: 500;
+    }
+    a:hover{
+      color: #f36c23;
+    }
   }
 }

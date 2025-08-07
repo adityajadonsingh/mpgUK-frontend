@@ -23,7 +23,6 @@ export default async function BlogPaginatedPage({
   }
   const { blogs, totalPages } = await getBlogPerCategory(slug, pageNumber);
   if(pageNumber > totalPages) return notFound();
-  console.log(blogs)
   return (
     <>
       <PageBanner
