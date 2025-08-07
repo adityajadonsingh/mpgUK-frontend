@@ -13,9 +13,9 @@ interface paginatedProducts {
 }
 
 const API_URL = process.env.API_URL!;
-const revalidateTime = 2;
-const PRODUCTS_PER_PAGE = 2;
-const BLOGS_PER_PAGE = 2;
+const revalidateTime = 0;
+const PRODUCTS_PER_PAGE = 12;
+const BLOGS_PER_PAGE = 12;
 
 export async function getHomePageData(): Promise<HomepageContent> {
   const res = await fetch(`${API_URL}/homepage-content`, { next: { revalidate: revalidateTime } });
