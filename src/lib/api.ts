@@ -196,7 +196,7 @@ export async function getSocialMedia(): Promise<{ social_media_links: SocialMedi
 export async function getProductCatalouge(): Promise<ProductCatalouge[]> {
   const res = await fetch(`${API_URL}/product-catalogues`, { next: { revalidate: revalidateTime } });
   if (!res.ok) {
-    throw new Error(`Failed to fetch product catalouges: ${res.status} ${res.statusText}`);
+    throw new Error(`Failed to fetch product catalogue: ${res.status} ${res.statusText}`);
   }
   return res.json();
 }

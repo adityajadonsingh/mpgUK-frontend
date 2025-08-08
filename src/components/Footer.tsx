@@ -24,7 +24,7 @@ export default function Footer({
                 className="object-contain"
               />
             </div>
-            <p className="text-sm">
+            <p className="text-sm pr-8">
               Leading natural stones manufacturer and supplier in the USA and
               worldwide since 1984. With a proven experience of 38+ years, MPG
               Stone has evolved as one of the fastest-growing natural stones and
