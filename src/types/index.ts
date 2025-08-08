@@ -164,3 +164,10 @@ export interface ProductCatalouge{
   thumbnail: string;
   pdf_file: string;
 }
+export interface LegalPageData{
+  page_type: string;
+  content: string;
+}
+export interface AboutUs{
+  description: string;
+}

@@ -58,7 +58,7 @@ export default function CategorySlider({
                           fill
                         />
                       </div>
-                      <h4 className="text-lg text-center mt-3 font-medium">{category.category_name}</h4>
+                      <h4 className="text-lg capitalize text-center mt-3 font-medium">{category.category_name}</h4>
                     </Link>
                   </div>
                 </SwiperSlide>

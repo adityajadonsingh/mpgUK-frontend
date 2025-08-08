@@ -42,7 +42,7 @@ export default function ProductGrid({
                   className="w-full object-cover transition-transform duration-300 group-hover:scale-105"
                 />
                 <div className="absolute bottom-0 left-0 w-full bg-[#00000081] bg-opacity-60 text-white text-center py-3">
-                  <h3 className="text-sm md:text-base font-medium px-2">
+                  <h3 className="text-sm md:text-base capitalize font-medium px-2">
                     {product.name}
                   </h3>
                 </div>

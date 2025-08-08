@@ -1,6 +1,6 @@
 // src/lib/api.ts
 
-import { Banner, Blog, BlogCategory, Category, ContactDetails, HomepageContent, Product, ProductCatalouge, Review, SocialMedia, Testimonial } from "@/types";
+import { AboutUs, Banner, Blog, BlogCategory, Category, ContactDetails, HomepageContent, LegalPageData, Product, ProductCatalouge, Review, SocialMedia, Testimonial } from "@/types";
 
 interface paginatedBlogs {
   blogs: Blog[];
@@ -95,6 +95,12 @@ export async function getAllProducts(page: number): Promise<paginatedProducts> {
     totalPages,
   };
 }
+export async function getRandomProducts(): Promise<Product[]> {
+  const res = await fetch(`${API_URL}/products/`, { next: { revalidate: revalidateTime } });
+  const allProducts: Product[] = await res.json();
+
+  return allProducts.sort(() => 0.5 - Math.random()).slice(0, 10);
+}
 export async function getProductDetails(slug: string): Promise<Product> {
   const res = await fetch(`${API_URL}/products/?slug=${slug}`, { next: { revalidate: revalidateTime } });
   if (!res.ok) {
@@ -171,9 +177,9 @@ export async function getAllBlogCategory(): Promise<BlogCategory[]> {
   return res.json();
 }
 export async function getBlogPerCategory(categorySlug: string, page: number): Promise<paginatedBlogs> {
-const res = await fetch(`${API_URL}/blogs`, { next: { revalidate: revalidateTime } });
+  const res = await fetch(`${API_URL}/blogs`, { next: { revalidate: revalidateTime } });
   const rawBlogs = await res.json();
-  const allBlogs: Blog[] = rawBlogs.blogs.filter((blog : Blog) => blog.category.slug === categorySlug);
+  const allBlogs: Blog[] = rawBlogs.blogs.filter((blog: Blog) => blog.category.slug === categorySlug);
   const total = allBlogs.length;
   const totalPages = Math.ceil(total / BLOGS_PER_PAGE);
 
@@ -197,6 +203,20 @@ export async function getProductCatalouge(): Promise<ProductCatalouge[]> {
   const res = await fetch(`${API_URL}/product-catalogues`, { next: { revalidate: revalidateTime } });
   if (!res.ok) {
     throw new Error(`Failed to fetch product catalogue: ${res.status} ${res.statusText}`);
+  }
+  return res.json();
+}
+export async function getLegalPageData(page: string): Promise<LegalPageData> {
+  const res = await fetch(`${API_URL}/legal/${page}/`, { next: { revalidate: revalidateTime } });
+  if (!res.ok) {
+    throw new Error(`Failed to fetch legal-page data: ${res.status} ${res.statusText}`);
+  }
+  return res.json();
+}
+export async function getAboutPageData(): Promise<AboutUs> {
+  const res = await fetch(`${API_URL}/about-us/`, { next: { revalidate: revalidateTime } });
+  if (!res.ok) {
+    throw new Error(`Failed to fetch about-page data: ${res.status} ${res.statusText}`);
   }
   return res.json();
 }

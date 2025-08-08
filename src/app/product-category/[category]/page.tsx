@@ -49,7 +49,7 @@ export default async function CategoryPage({
         totalPages={totalPages}
         categorySlug={getParams.category}
       />
-      <FooterContent content={category.descriptions} />
+      <FooterContent content={category.descriptions} isFullPage={false} />
     </>
   );
 }

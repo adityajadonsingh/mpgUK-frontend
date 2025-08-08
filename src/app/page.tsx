@@ -33,7 +33,7 @@ export default async function HomePage() {
       <TestimonialSection data={testimonials} />
       <BlogsSection data={blogs} />
       <ContactSection />
-      <FooterContent content={homepageContent.content}/>
+      <FooterContent content={homepageContent.content} isFullPage={false}/>
     </>
   );
 }
