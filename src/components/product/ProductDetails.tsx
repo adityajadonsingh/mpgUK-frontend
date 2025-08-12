@@ -64,6 +64,7 @@ export default function ProductDetails({
         isOpen={isPopupOpen}
         onClose={() => setIsPopupOpen(false)}
         onSuccessMessage={handleSuccessMessage}
+        product={name}
       />
 
       {showPopup && (

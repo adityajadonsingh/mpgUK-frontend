@@ -1,6 +1,6 @@
 "use client";
 
-import { ContactFormData } from "@/types";
+import { ProductFormData } from "@/types";
 import { useRef, useState, useEffect } from "react";
 import ReCAPTCHA from "react-google-recaptcha";
 import clsx from "clsx";
@@ -9,12 +9,15 @@ export default function ContactPopup({
   isOpen,
   onClose,
   onSuccessMessage,
+  product
 }: {
   isOpen: boolean;
+  product: string;
   onClose: () => void;
   onSuccessMessage: (msg: string) => void;
 }) {
-  const [formData, setFormData] = useState<ContactFormData>({
+  const [formData, setFormData] = useState<ProductFormData>({
+    product_name: product,
     name: "",
     email: "",
     phone_number: "",
@@ -60,9 +63,19 @@ export default function ContactPopup({
 
       if (!res.ok) throw new Error("Failed to send");
 
+      // Send email
+      const mailRes = await fetch("/api/sendMail", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ type: "product", ...formData }),
+      });
+
+      if (!mailRes.ok)
+        throw new Error(`Mail send failed: ${mailRes.statusText}`);
+
       setStatus("Message sent successfully!");
       onSuccessMessage("Message sent successfully!");
-      setFormData({ name: "", phone_number: "", email: "", message: "" });
+      setFormData({ name: "", phone_number: "", email: "", message: "", product_name: product });
       setCaptchaToken("");
       recaptchaRef.current?.reset();
 

@@ -4,8 +4,10 @@ import Image from "next/image";
 import { ContactFormData } from "@/types";
 import { useRef, useState } from "react";
 import ReCAPTCHA from "react-google-recaptcha";
-
+import PopupMessage from "@/components/PopupMessage";
+import { useRouter } from "next/navigation";
 export default function ContactSection() {
+  const router = useRouter();
   const [formData, setFormData] = useState<ContactFormData>({
     name: "",
     email: "",
@@ -13,7 +15,12 @@ export default function ContactSection() {
     message: "",
   });
 
-  const [status, setStatus] = useState("");
+  const [popup, setPopup] = useState({
+    show: false,
+    message: "",
+    type: "success" as "success" | "error",
+  });
+
   const [captchaToken, setCaptchaToken] = useState("");
   const recaptchaRef = useRef<ReCAPTCHA>(null);
 
@@ -25,40 +32,54 @@ export default function ContactSection() {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    setStatus("Sending...");
 
     if (!captchaToken) {
-      setStatus("Please complete the CAPTCHA.");
+      setPopup({
+        show: true,
+        message: "Please complete the CAPTCHA.",
+        type: "error",
+      });
       return;
     }
 
     try {
-      const res = await fetch("/api/contact", {
+      // Save data to DB
+      const dbRes = await fetch("/api/contact", {
         method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
+        headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ ...formData, captchaToken }),
       });
-      if (!res.ok) {
-        throw new Error(`Failed Send Data: ${res.status} ${res.statusText}`);
+
+      if (!dbRes.ok) throw new Error(`DB save failed: ${dbRes.statusText}`);
+      else {
+        router.push("/thank-you");
       }
-      if (res.ok) {
-        setStatus("Message sent successfully!");
-        setFormData({
-          name: "",
-          phone_number: "",
-          email: "",
-          message: "",
-        });
-        setCaptchaToken("");
-        recaptchaRef.current?.reset(); // Reset CAPTCHA
-      } else {
-        setStatus("Failed to send message.");
-      }
+      // Send email
+      const mailRes = await fetch("/api/sendMail", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ type: "contact", ...formData }),
+      });
+
+      if (!mailRes.ok)
+        throw new Error(`Mail send failed: ${mailRes.statusText}`);
+
+      // Success
+      setPopup({
+        show: true,
+        message: "Message sent successfully!",
+        type: "success",
+      });
+      setFormData({ name: "", phone_number: "", email: "", message: "" });
+      setCaptchaToken("");
+      recaptchaRef.current?.reset();
     } catch (error) {
-      console.error("Error:", error);
-      setStatus("An error occurred.");
+      console.error("Error submitting form:", error);
+      setPopup({
+        show: true,
+        message: "Failed to send message.",
+        type: "error",
+      });
     }
   };
 
@@ -69,8 +90,10 @@ export default function ContactSection() {
           <div className="form md:w-10/12 w-11/12 md:py-8 mx-auto">
             <h4 className="text-3xl font-semibold">Having Any Query?</h4>
             <p className="my-3">
-              Welcome to MPG Stone! We’re here to assist you in any way we can. Please feel free to reach out to us using the contact form.
+              Welcome to MPG Stone! We’re here to assist you in any way we can.
+              Please feel free to reach out to us using the contact form.
             </p>
+
             <form onSubmit={handleSubmit} className="space-y-4">
               <input
                 type="text"
@@ -121,9 +144,9 @@ export default function ContactSection() {
               >
                 Submit
               </button>
-              {status && <p>{status}</p>}
             </form>
           </div>
+
           <div className="img-box relative md:w-10/12 w-11/12 md:block none mx-auto h-full">
             <Image
               src="/media/contact-home.png"
@@ -134,6 +157,14 @@ export default function ContactSection() {
           </div>
         </div>
       </div>
+
+      {/* Popup */}
+      <PopupMessage
+        message={popup.message}
+        type={popup.type}
+        show={popup.show}
+        onClose={() => setPopup({ ...popup, show: false })}
+      />
     </section>
   );
 }

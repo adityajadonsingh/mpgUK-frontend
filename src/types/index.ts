@@ -139,6 +139,13 @@ export interface ContactFormData {
   phone_number: string;
   message: string;
 }
+export interface ProductFormData {
+  name: string;
+  email: string;
+  phone_number: string;
+  message: string;
+  product_name: string;
+}
 export interface SocialMedia {
   id: number;
   platform: string;

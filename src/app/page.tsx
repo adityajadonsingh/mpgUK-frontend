@@ -8,6 +8,35 @@ import FeatureCard from "@/components/home/FeatureCard";
 import TestimonialSection from "@/components/home/TestimonialSection";
 import { getBlogs, getHomeBanners, getHomePageData, getTestimonials } from "@/lib/api";
 import { Banner, HomepageContent } from "@/types";
+import { Metadata } from "next";
+
+export async function generateMetadata(): Promise<Metadata> {
+  const content: HomepageContent = await getHomePageData();
+
+  return {
+    title: content.meta_title || "Home | MPG Stone",
+    description: content.meta_description || "Default description",
+    keywords: content.meta_keywords || "",
+    openGraph: {
+      title: content.og_title || content.meta_title || "",
+      description: content.og_description || content.meta_description || "",
+      url: content.canonical_url || "",
+      images: content.meta_image ? [content.meta_image] : [],
+      type: "website",
+      locale: "en_US",
+      siteName: "MPG Stone",
+    },
+    twitter: {
+      title: content.twitter_title || content.meta_title || "",
+      description: content.twitter_description || content.meta_description || "",
+      images: content.meta_image ? [content.meta_image] : [],
+    },
+    alternates: {
+      canonical: content.canonical_url || "",
+    },
+    robots: content.robots_tag || undefined,
+  };
+}
 
 export default async function HomePage() {
   const homepageContent: HomepageContent = await getHomePageData();
