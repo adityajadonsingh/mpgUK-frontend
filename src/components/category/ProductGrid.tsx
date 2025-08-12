@@ -26,7 +26,7 @@ export default function ProductGrid({
   return (
     <section className="product-grid my-12">
       <div className="container mx-auto">
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 lg:gap-6 md:gap-4 gap-3">
           {products.map((product, index) => (
             <Link
               href={`/product-category/${product.category
@@ -42,7 +42,7 @@ export default function ProductGrid({
                   className="w-full object-cover transition-transform duration-300 group-hover:scale-105"
                 />
                 <div className="absolute bottom-0 left-0 w-full bg-[#00000081] bg-opacity-60 text-white text-center py-3">
-                  <h3 className="text-sm md:text-base capitalize font-medium px-2">
+                  <h3 className="text-xs md:text-base capitalize font-medium px-2">
                     {product.name}
                   </h3>
                 </div>

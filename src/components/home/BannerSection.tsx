@@ -37,8 +37,8 @@ export default function BannerSection({ data }: { data: Banner[] }) {
                 fill
               />
               <div className="content-box">
-                <h2 className="text-4xl font-bold mb-3 capitalize">{banner.title}</h2>
-                <p className="mb-4 text-lg">{banner.subtitle}</p>
+                <h2 className="xl:text-4xl lg:text-3xl md:text-2xl text-xl font-bold mb-3 capitalize">{banner.title}</h2>
+                <p className="mb-4 md:text-lg text-base">{banner.subtitle}</p>
                 <button className="bg-[#f36c23] hover:bg-[#e76017] cursor-pointer font-semibold text-white px-6 py-2 rounded">
                   {banner.enquiry_button_text}
                 </button>

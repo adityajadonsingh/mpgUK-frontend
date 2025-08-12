@@ -21,7 +21,7 @@ const ProductSlider: FC<ProductSliderProps> = ({ products }) => {
   return (
     <section className="my-10 product-slider">
       <div className="container">
-        <h2 className="heading text-center text-3xl font-semibold mb-6">
+        <h2 className="heading text-center lg:text-3xl text-2xl font-semibold mb-6">
           Explore Our Products
         </h2>
         <Swiper

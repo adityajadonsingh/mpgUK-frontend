@@ -63,14 +63,13 @@ export default function ContactSection() {
   };
 
   return (
-    <section className="contact-section my-10">
+    <section className="contact-section md:my-10 my-5">
       <div className="container">
-        <div className="grid grid-cols-2">
-          <div className="form w-10/12 py-8 mx-auto">
+        <div className="grid md:grid-cols-2 grid-cols-1">
+          <div className="form md:w-10/12 w-11/12 md:py-8 mx-auto">
             <h4 className="text-3xl font-semibold">Having Any Query?</h4>
             <p className="my-3">
-              Lorem ipsum dolor, sit amet consectetur adipisicing elit. Ut
-              doloremque animi quasi exercitationem? Dolor, voluptatibus!
+              Welcome to MPG Stone! We’re here to assist you in any way we can. Please feel free to reach out to us using the contact form.
             </p>
             <form onSubmit={handleSubmit} className="space-y-4">
               <input
@@ -125,7 +124,7 @@ export default function ContactSection() {
               {status && <p>{status}</p>}
             </form>
           </div>
-          <div className="img-box relative w-10/12 mx-auto h-full">
+          <div className="img-box relative md:w-10/12 w-11/12 md:block none mx-auto h-full">
             <Image
               src="/media/contact-home.png"
               alt="Contact Us"

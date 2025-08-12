@@ -5,7 +5,7 @@ export default function FeatureCard() {
     <>
       <section className="features my-6">
         <div className="container">
-          <div className="grid grid-cols-4 gap-6">
+          <div className="grid md:grid-cols-4 grid-cols-2 gap-6">
             <div className="card py-2 px-3 rounded shadow-sm flex flex-col justify-center items-center">
               <div className="icn">
                 <Image
@@ -17,7 +17,7 @@ export default function FeatureCard() {
                 />
               </div>
               <div className="text mt-2">
-                <span className="inline-block text-lg font-medium">
+                <span className="inline-block lg:text-lg text-base font-medium text-center">
                   Best Quality Assured
                 </span>
               </div>
@@ -33,7 +33,7 @@ export default function FeatureCard() {
                 />
               </div>
               <div className="text mt-2">
-                <span className="inline-block text-lg font-medium">
+                <span className="inline-block lg:text-lg text-base font-medium text-center">
                   Timely Delivery
                 </span>
               </div>
@@ -49,7 +49,7 @@ export default function FeatureCard() {
                 />
               </div>
               <div className="text mt-2">
-                <span className="inline-block text-lg font-medium">
+                <span className="inline-block lg:text-lg text-base font-medium text-center">
                   Customer Satisfaction
                 </span>
               </div>
@@ -65,7 +65,7 @@ export default function FeatureCard() {
                 />
               </div>
               <div className="text mt-2">
-                <span className="inline-block text-lg font-medium">
+                <span className="inline-block lg:text-lg text-base font-medium text-center">
                   Reasonable Price
                 </span>
               </div>

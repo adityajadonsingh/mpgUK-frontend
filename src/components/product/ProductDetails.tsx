@@ -77,8 +77,8 @@ export default function ProductDetails({
 
       <section className="product-details py-5">
         <div className="container">
-          <div className="grid grid-cols-[40%_55%] gap-x-5 w-12/12 mx-auto">
-            <div className="img-box">
+          <div className="grid lg:grid-cols-[40%_55%] grid-cols-1 gap-x-5 w-12/12 mx-auto">
+            <div className="img-box lg:w-full sm:w-[450px] w-full mx-auto lg:mb-0 mb-5">
               {/* Main Swiper */}
               <Swiper
                 spaceBetween={10}
@@ -89,7 +89,7 @@ export default function ProductDetails({
               >
                 {gallery.map((item, index) => (
                   <SwiperSlide key={index}>
-                    <div className="relative w-full md:h-[440px] h-[340px] group">
+                    <div className="relative w-full md:h-[440px] sm:h-[340px] h-[300px] group">
                       <Image
                         src={item.image}
                         alt={item.alt_text}
@@ -198,10 +198,10 @@ export default function ProductDetails({
                 })}
               </div>
 
-              <div className="enquire-now mt-4">
+              <div className="enquire-now sm:mt-4 mt-6">
                 <button
                   onClick={() => setIsPopupOpen(true)}
-                  className="bg-orange-600 text-white px-6 py-2 font-medium rounded-md text-lg"
+                  className="bg-orange-600 text-white px-6 py-2 font-medium rounded-md text-lg sm:w-fit w-full cursor-pointer"
                 >
                   Enquire Now
                 </button>

@@ -431,7 +431,7 @@ a {
   }
 }
 .page-banner {
-  height: 35vh;
+  min-height: 35vh;
 }
 .page-banner::before {
   content: "";
@@ -689,8 +689,21 @@ a {
   .swiper-button-prev {
     left: 20px;
   }
-  .swiper-button-prev::after, .swiper-button-next::after {
+  .swiper-button-prev::after,
+  .swiper-button-next::after {
     font-size: 18px;
     color: #f36c23;
+  }
+}
+.mobile-nav {
+  li {
+    padding: 10px 10px;
+    a {
+      width: 100%;
+      display: block;
+    }
+    a:hover {
+      background-color: #ededed;
+    }
   }
 }

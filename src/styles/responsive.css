@@ -1,0 +1,182 @@
+@media only screen and (max-width: 1300px) {
+  .category-slider {
+    .card {
+      .img-box {
+        height: 240px;
+      }
+    }
+  }
+}
+@media only screen and (max-width: 1200px) {
+  .home-banner {
+    .content-box {
+      max-width: 80%;
+    }
+  }
+  .about-home {
+    .images {
+      .img-big {
+        height: 480px;
+      }
+    }
+  }
+}
+@media only screen and (max-width: 991px) {
+  .home-banner {
+    height: 55vh;
+  }
+  .category-slider {
+    .card {
+      .img-box {
+        height: 240px;
+      }
+    }
+  }
+  .about-home {
+    .images {
+      .img-big {
+        height: 400px;
+      }
+    }
+  }
+  .about-home {
+    .images {
+      .img-small-wrapper {
+        width: 260px;
+        height: 260px;
+      }
+    }
+  }
+  .product-grid {
+    .card {
+      height: 275px;
+    }
+  }
+}
+@media only screen and (max-width: 768px) {
+  .product-grid {
+    .card {
+      height: 255px;
+    }
+  }
+  .page-banner {
+    min-height: 30vh;
+  }
+  .page-banner.category-banner {
+    min-height: 38vh;
+    padding: 25px 0;
+    height: fit-content;
+  }
+  .pg-des .wrapper .inner-wrapper {
+    padding: 4px 20px 18px;
+  }
+  .blogs-home {
+    .card {
+      padding: 20px;
+    }
+  }
+  .testimonials {
+    .swiper-button-prev,
+    .swiper-button-next {
+      display: none;
+    }
+  }
+  .home-banner {
+    height: 50vh;
+    .content-box {
+      max-width: 95%;
+    }
+  }
+  .header {
+    .wrap {
+      width: 125px;
+    }
+  }
+  .category-slider {
+    .card {
+      padding: 10px;
+    }
+  }
+  .category-slider {
+    .swiper-button-prev {
+      left: 15px;
+    }
+  }
+  .category-slider {
+    .swiper-button-next {
+      right: 15px;
+    }
+  }
+  .about-home {
+    .images {
+      .img-small-wrapper {
+        width: 200px;
+        height: 200px;
+      }
+    }
+  }
+  .about-home {
+    .images {
+      .img-big {
+        width: 90%;
+      }
+    }
+  }
+  .about-home {
+    .content {
+      padding: 0;
+    }
+  }
+}
+@media only screen and (max-width: 490px) {
+  .product-grid {
+    .card {
+      height: 230px;
+    }
+  }
+  .header {
+    padding: 18px 0;
+    .contact {
+      .icn {
+        font-size: 14px;
+        width: 30px;
+        height: 30px;
+      }
+    }
+  }
+  main {
+    padding-top: 68px;
+  }
+  .pg-des {
+    h2,
+    h2 span {
+      font-size: 22px;
+    }
+    h3,
+    h3 span {
+      font-size: 17px;
+    }
+  }
+  .category-slider {
+    .card {
+      .img-box {
+        height: 200px;
+      }
+    }
+  }
+  .about-home {
+    .images {
+      .img-big {
+        width: 90%;
+        height: 330px;
+      }
+    }
+  }
+}
+@media only screen and (max-width: 490px) {
+  .product-grid {
+    .card {
+      height: 200px;
+    }
+  }
+}

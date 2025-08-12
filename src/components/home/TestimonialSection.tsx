@@ -13,9 +13,9 @@ interface TestimonialProps {
 export default function TestimonialSection({ data }: TestimonialProps) {
   return (
     <>
-      <section className="testimonials mt-20 mb-10">
+      <section className="testimonials lg:mt-20 mt-5 lg:mb-10 mb-5">
         <div className="container">
-          <h3 className="heading text-center text-3xl font-semibold ">
+          <h3 className="heading text-center lg:text-3xl text-2xl font-semibold ">
             What Our Clients Say About Us
           </h3>
           <div className="slider">
@@ -33,6 +33,17 @@ export default function TestimonialSection({ data }: TestimonialProps) {
               speed={800}
               loop={true}
               effect="slide"
+              breakpoints={{
+              0: {
+                slidesPerView: 1, // Mobile
+              },
+              608: {
+                slidesPerView: 2, // Tablets
+              },
+              1024: {
+                slidesPerView: 3, // Desktop
+              },
+            }}
             >
               {data.map((testimonial) => {
                 return (
@@ -68,7 +79,7 @@ export default function TestimonialSection({ data }: TestimonialProps) {
                             ))}
                           </div>
                           <hr className="my-2 text-[#ccc]" />
-                          <span className="block">
+                          <span className="block md:text-base text-sm">
                             {testimonial.testimonial}
                           </span>
                         </div>

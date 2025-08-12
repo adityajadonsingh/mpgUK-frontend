@@ -26,11 +26,11 @@ export default function CategoryBanner({
           fill
           className="object-cover z-0"
         />
-        <div className="text-start px-10 relative z-10 w-3/5">
-          <h1 className="text-4xl capitalize text-white font-bold ">
+        <div className="text-start md:px-10 px-4 relative z-10 lg:w-3/5 md:w-4/5 w-full">
+          <h1 className="lg:text-4xl md:text-3xl text-2xl capitalize text-white font-bold ">
             {pageName}
           </h1>
-          <ul className="flex justify-start capitalize my-4 items-center gap-x-2 text-white font-medium text-lg">
+          <ul className="flex justify-start capitalize my-4 items-center md:gap-x-2 gap-x-1 text-white font-medium md:text-lg text-base">
             <li>
               <Link className="" href={"/"}>
                 <div className="flex gap-x-1 hover:text-[#f37a38]">
@@ -69,7 +69,7 @@ export default function CategoryBanner({
               }
             })}
           </ul>
-          <p className="text-white">{short_description}</p>
+          <p className="text-white md:text-base text-sm">{short_description}</p>
         </div>
       </section>
     </>

@@ -16,16 +16,15 @@ export default function CategorySlider({
   description: string;
 }) {
   const { categories } = useSiteData();
-  // console.log(categories);
   return (
     <>
       <section className="category-slider mt-10">
         <div className="container">
-          <div className="w-2/3 mx-auto">
-            <h1 className="text-center text-3xl font-semibold capitalize mb-3">
+          <div className="md:w-2/3 w-full mx-auto">
+            <h1 className="text-center lg:text-3xl text-2xl font-semibold capitalize mb-3">
               {heading}
             </h1>
-            <p className="text-center font-medium">{description}</p>
+            <p className="text-center md:text-base text-sm font-medium">{description}</p>
           </div>
           <div className="slider ">
             <Swiper
@@ -42,6 +41,20 @@ export default function CategorySlider({
               }}
               speed={800}
               effect="slide"
+              breakpoints={{
+              0: {
+                slidesPerView: 2, // Mobile
+              },
+              480: {
+                slidesPerView: 2, // Small tablets
+              },
+              768: {
+                slidesPerView: 3, // Tablets
+              },
+              1024: {
+                slidesPerView: 4, // Desktop
+              },
+            }}
             >
               {categories.map((category) => (
                 <SwiperSlide
@@ -58,7 +71,7 @@ export default function CategorySlider({
                           fill
                         />
                       </div>
-                      <h4 className="text-lg capitalize text-center mt-3 font-medium">{category.category_name}</h4>
+                      <h4 className="xl:text-lg lg:text-base text-sm capitalize text-center mt-3 font-semibold">{category.category_name}</h4>
                     </Link>
                   </div>
                 </SwiperSlide>

@@ -61,7 +61,7 @@ export default function ProductReviews({
   };
 
   return (
-    <div className="w-2/3 mx-auto my-8">
+    <div className="sm:w-2/3 w-full mx-auto my-8">
       {/* Popup Message */}
       <PopupMessage
         show={popup.show}
@@ -70,7 +70,8 @@ export default function ProductReviews({
         onClose={() => setPopup({ ...popup, show: false })}
       />
 
-      {/* Review Form */}
+      <div className="container">
+        {/* Review Form */}
       <form
         onSubmit={handleSubmit}
         className="space-y-4 bg-[#f6f4f5] p-5 rounded-md shadow"
@@ -144,6 +145,7 @@ export default function ProductReviews({
             </div>
           ))
         )}
+      </div>
       </div>
     </div>
   );

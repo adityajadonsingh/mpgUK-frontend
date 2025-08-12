@@ -17,8 +17,8 @@ export default function AboutSection({
     <>
       <section className="about-home my-10">
         <div className="container">
-          <div className="flex gap-x-6 items-center">
-            <div className="images relative w-1/2">
+          <div className="flex md:flex-nowrap flex-wrap gap-x-6 items-center">
+            <div className="images relative md:w-1/2 sm:w-4/5 w-full md:mx-0 mx-auto">
               <div className="img-big relative">
                 <Image
                   src={imgBig}
@@ -38,8 +38,8 @@ export default function AboutSection({
                 </div>
               </div>
             </div>
-            <div className="content w-1/2">
-              <h3 className="heading text-3xl font-semibold mb-3">{heading}</h3>
+            <div className="content md:w-1/2 w-full md:mt-0 mt-10">
+              <h3 className="heading lg:text-3xl text-2xl font-semibold mb-3">{heading}</h3>
               <div
                 className="prose"
                 dangerouslySetInnerHTML={{ __html: description }}

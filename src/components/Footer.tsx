@@ -14,7 +14,7 @@ export default function Footer({
   return (
     <footer className="footer">
       <div className="container">
-        <div className="grid grid-cols-[34%_17%_16%_30%] gap-4">
+        <div className="grid xl:grid-cols-[34%_17%_16%_30%] lg:grid-cols-[30%_17%_16%_32%] md:grid-cols-[38%_29%_29%] sm:grid-cols-2 grid-cols-1 gap-4">
           <div className="logo">
             <div className="img relative h-[52px] w-[180px] mb-3">
               <Image
@@ -25,13 +25,7 @@ export default function Footer({
               />
             </div>
             <p className="text-sm pr-8">
-              Leading natural stones manufacturer and supplier in the USA and
-              worldwide since 1984. With a proven experience of 38+ years, MPG
-              Stone has evolved as one of the fastest-growing natural stones and
-              floor tiles offering brands in a short time. Discover a wide range
-              of high-quality products like pavers, cobblestones, indoor tiles,
-              natural stone pavers, different types of marble floorings, and
-              more.
+              A leading manufacturer and supplier of natural stone in the United Kingdom and around the globe. MPG Stone has become one of the leading suppliers of natural stone and floor tiles. Explore a diverse selection of high-quality products, including pavers, cobblestones, indoor tiles, natural stone pavers, and various types of marble flooring.
             </p>
             <div className="social-media mt-6">
               <ul className="flex gap-x-3">

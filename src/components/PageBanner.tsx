@@ -25,10 +25,10 @@ export default function PageBanner({
           className="object-cover z-0"
         />
         <div className="text-center relative z-10">
-          <h1 className="text-4xl capitalize text-white font-bold ">
+          <h1 className="lg:text-4xl md:text-3xl text-2xl capitalize text-white font-bold ">
             {pageName}
           </h1>
-          <ul className="flex justify-center gap-x-2 text-white font-medium text-lg mt-4">
+          <ul className="flex justify-center gap-x-2 text-white font-medium md:text-lg text-base md:mt-4 mt-2">
             <li>
               <Link className="" href={"/"}>
                 <div className="flex gap-x-1 hover:text-[#f37a38]">

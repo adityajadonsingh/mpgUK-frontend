@@ -2,23 +2,24 @@
 
 import { ReactNode } from "react";
 
+import "@/styles/globals.css";
+import "@/styles/responsive.css";
 import "bootstrap-icons/font/bootstrap-icons.css";
-import "./globals.css";
+import { SiteDataProvider } from "@/context/SiteDataProvider";
 
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
+import GoogleAnalytics from "@/components/GoogleAnalytics";
 
 import { getAllCategorys, getContactDetails, getSocialMedia } from "@/lib/api";
 import { Category, ContactDetails } from "@/types";
-
-import { SiteDataProvider } from "@/context/SiteDataProvider";
 
 import { Montserrat } from "next/font/google";
 import SmoothScroll from "@/components/SmoothScroll";
 
 const montserrat = Montserrat({
   subsets: ["latin"],
-  weight: ["400", "500", "700"],
+  weight: ["400", "500", "600", "700"],
 });
 
 export const metadata = {
@@ -55,6 +56,9 @@ export default async function RootLayout({
   const { social_media_links } = await getSocialMedia();
   return (
     <html lang="en">
+      <head>
+        <GoogleAnalytics />
+      </head>
       <body className={montserrat.className}>
         <SiteDataProvider
           categories={categories}

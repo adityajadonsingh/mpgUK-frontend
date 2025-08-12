@@ -15,8 +15,8 @@ export default async function ContactPage() {
       />
       <section className="contact-page my-10">
         <div className="container">
-          <div className="grid grid-cols-2 gap-4">
-            <div className="map h-[450px]">
+          <div className="grid md:grid-cols-2 grid-cols-1 gap-4">
+            <div className="map md:h-[450px] h-[200px]">
               <iframe
                   src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d5030.799917806217!2d-1.4825172296816007!3d50.916317986266876!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x487476060eb9303d%3A0x385eaecb9e0f016e!2sTotton%2C%20Southampton%20SO40%204TE%2C%20UK!5e0!3m2!1sen!2sin!4v1754630175156!5m2!1sen!2sin"
                   loading="lazy"
@@ -24,8 +24,8 @@ export default async function ContactPage() {
                   referrerPolicy="no-referrer-when-downgrade"
                 ></iframe>
             </div>
-            <div className="details w-9/12 mx-auto">
-              <h2 className="heading mb-5 text-3xl font-semibold ">Reach Us By</h2>
+            <div className="details md:w-9/12 w-full mx-auto">
+              <h2 className="heading mb-5 md:text-3xl text-2xl font-semibold ">Reach Us By</h2>
               <ul>
                 <li className="flex bg-[#f6f4f5] p-4 rounded-sm items-center mb-4">
                   <div className="icn">
