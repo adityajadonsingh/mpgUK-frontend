@@ -26,7 +26,7 @@ export default function BlogsGrid({
     <>
       <section className="blogs-grid my-10 blogs-home">
         <div className="container">
-          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3  gap-6">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3  gap-6">
             {blogs.map((blog) => {
               const rawDate = blog.date_posted;
               const formattedDate = new Date(rawDate).toLocaleDateString(
@@ -43,7 +43,7 @@ export default function BlogsGrid({
                   key={blog.id}
                 >
                   <Link href={`/blogs/${blog.slug}/`}>
-                    <div className="img-box rounded-sm w-full overflow-hidden h-[300px] relative">
+                    <div className="img-box rounded-sm w-full overflow-hidden md:h-[280px] h-[200px] relative">
                       <Image
                         src={blog.image}
                         alt={blog.alt_text || blog.title}
@@ -52,7 +52,7 @@ export default function BlogsGrid({
                       />
                     </div>
                     <div className="content mt-5">
-                      <span className="block text-sm text-[#f36c23] font-medium">
+                      <span className="block md:text-sm text-xs text-[#f36c23] font-medium">
                         Date Posted : {formattedDate} | Author : Jaya Tripathi
                       </span>
                       <span className="text-lg hover:text-[#f36c23] my-2 block font-semibold">

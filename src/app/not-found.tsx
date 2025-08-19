@@ -14,7 +14,7 @@ export default function NotFound() {
       />
       </div>
       <p className="mt-4 text-lg text-gray-600">
-        Oops! The page you're looking for doesn't exist.
+        Oops! The page you&apos;re looking for doesn&apos;t exist.
       </p>
       <Link
         href="/"

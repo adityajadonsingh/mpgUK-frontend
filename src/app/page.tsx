@@ -34,7 +34,7 @@ export async function generateMetadata(): Promise<Metadata> {
     alternates: {
       canonical: content.canonical_url || "",
     },
-    robots: content.robots_tag || undefined,
+    robots: content.robots_tag,
   };
 }
 
