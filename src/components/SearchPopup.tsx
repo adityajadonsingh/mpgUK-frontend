@@ -59,7 +59,7 @@ export default function SearchPopup({
             placeholder="Search..."
             className="flex-grow border border-gray-300 px-4 py-2 rounded-l"
           />
-          <button className="bg-[#e6af5d] hover:bg-[#c09d68] cursor-pointer text-white px-4 py-2 rounded-r">
+          <button className="bg-[#f36c23] hover:bg-[#c09d68] cursor-pointer text-white px-4 py-2 rounded-r">
             Search
           </button>
         </div>

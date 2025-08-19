@@ -10,6 +10,48 @@ import XShareButton from "@/components/blogs/XShareButton";
 import LinkedInShareButton from "@/components/blogs/LinkedInShareButton";
 import CommentSection from "@/components/blogs/CommentSection";
 
+import { Metadata } from "next";
+
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ slug: string }>;
+}): Promise<Metadata> {
+  const { slug } = await params;
+  const data: { blogs: Blog[] } = await getBlogs();
+  const blog = data.blogs.find((b) => b.slug === slug);
+
+  if (!blog) {
+    return {
+      title: "Blog Not Found | MPG Stone",
+      description: "The requested blog does not exist.",
+    };
+  }
+  return {
+    title: blog.meta_title || "Home | MPG Stone",
+    description: blog.meta_description || "Default description",
+    keywords: blog.meta_keyword || "",
+    openGraph: {
+      title: blog.og_title || blog.meta_title || "",
+      description: blog.og_description || blog.meta_description || "",
+      url: blog.canonical_url || "",
+      images: blog.meta_img ? [blog.meta_img] : [],
+      type: "website",
+      locale: "en_US",
+      siteName: "MPG Stone",
+    },
+    twitter: {
+      title: blog.twitter_title || blog.meta_title || "",
+      description: blog.twitter_description || blog.meta_description || "",
+      images: blog.meta_img ? [blog.meta_img] : [],
+    },
+    alternates: {
+      canonical: blog.canonical_url || "",
+    },
+    robots: blog.robot_tag,
+  };
+}
+
 export default async function BlogsPage({
   params,
 }: {
@@ -18,7 +60,6 @@ export default async function BlogsPage({
   const { slug } = await params;
   const data: { blogs: Blog[] } = await getBlogs();
   const blog = data.blogs.find((b) => b.slug === slug);
-  console.log(blog);
   if (!blog) return notFound();
   const blogCategory: BlogCategory[] = await getAllBlogCategory();
   const latestBlogs = data.blogs
@@ -30,9 +71,9 @@ export default async function BlogsPage({
     <>
       <section className="blog-page my-10">
         <div className="container">
-          <div className="flex">
-            <div className="w-2/3">
-              <ul className="breadcrum font-medium flex gap-x-2 flex-wrap capitalize">
+          <div className="flex lg:flex-nowrap flex-wrap gap-y-6">
+            <div className="lg:w-2/3 w-full">
+              <ul className="breadcrum font-medium md:text-base text-sm flex md:gap-x-2 gap-x-1 flex-wrap capitalize">
                 <li>
                   <Link href={"/"}>
                     <i className="bi bi-house-door-fill"></i> Home
@@ -46,10 +87,10 @@ export default async function BlogsPage({
                 <li className="text-[#f36c23]">{blog?.title}</li>
               </ul>
               <div className="blog-content">
-                <h1 className="text-3xl font-semibold mt-5 mb-2">
+                <h1 className="md:text-3xl text-xl font-semibold mt-5 mb-2">
                   {blog?.title}
                 </h1>
-                <ul className="blog-details flex gap-x-2">
+                <ul className="blog-details flex flex-wrap md:text-base text-sm gap-x-2">
                   <li>
                     <i className="bi bi-calendar-event-fill text-[#f48245]"></i>{" "}
                     Posted on {blog?.date_posted}
@@ -61,7 +102,7 @@ export default async function BlogsPage({
                   </li>
                 </ul>
                 <hr className="mt-4 mb-5" />
-                <div className="blog-main-img h-[450px] relative mb-5">
+                <div className="blog-main-img relative mb-5">
                   <Image
                     src={blog?.image || "/media/placeholder.jpg"}
                     alt={blog?.alt_text || "alt"}
@@ -70,7 +111,7 @@ export default async function BlogsPage({
                   />
                 </div>
                 <BlogContent content={blog.content} />
-                <div className="about-author border-1 p-6 mt-5 rounded-md">
+                <div className="about-author border-1 md:p-6 p-4 mt-5 rounded-md">
                   <h5 className="font-semibold text-xl">About the Autor</h5>
                   <hr className="my-3" />
                   <p>
@@ -126,8 +167,8 @@ export default async function BlogsPage({
                 <CommentSection blogId={blog.id} blogTitle={blog.title} />
               </div>
             </div>
-            <div className="w-1/3 relative">
-              <div className="wrapper w-10/12 ml-auto sticky top-[100px]">
+            <div className="lg:w-1/3 w-full relative">
+              <div className="wrapper lg:w-10/12 md:w-6/12 lg:ml-auto mx-auto sticky top-[100px]">
                 <div className="blog-category">
                   <h3 className="text-xl text-center font-semibold border-b-1 pb-2 mb-5">
                     Blog Category
@@ -156,7 +197,10 @@ export default async function BlogsPage({
                   </h3>
                   <ul>
                     {latestBlogs.map((blog, idx) => (
-                      <li key={idx} className="mb-4 p-3 bg-white rounded-md shadow-sm hover:shadow-md">
+                      <li
+                        key={idx}
+                        className="mb-4 p-3 bg-white rounded-md shadow-sm hover:shadow-md"
+                      >
                         <Link href={""}>
                           <div className="flex">
                             <div className="img relative">

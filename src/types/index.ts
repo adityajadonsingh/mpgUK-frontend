@@ -178,3 +178,17 @@ export interface LegalPageData{
 export interface AboutUs{
   description: string;
 }
+export interface MetaData{
+  page: string;
+  meta_title: string;
+  meta_description: string;
+  meta_image: string;
+  meta_keywords: string;
+  og_title: string;
+  og_description: string;
+  twitter_title: string;
+  twitter_description: string;
+  canonical_url: string;
+  robots_tag: string;
+  publisher: string | null;
+}

@@ -1,6 +1,6 @@
 // src/lib/api.ts
 
-import { AboutUs, Banner, Blog, BlogCategory, Category, ContactDetails, HomepageContent, LegalPageData, Product, ProductCatalouge, Review, SocialMedia, Testimonial } from "@/types";
+import { AboutUs, Banner, Blog, BlogCategory, Category, ContactDetails, HomepageContent, LegalPageData, MetaData, Product, ProductCatalouge, Review, SocialMedia, Testimonial } from "@/types";
 
 interface paginatedBlogs {
   blogs: Blog[];
@@ -213,6 +213,13 @@ export async function getLegalPageData(page: string): Promise<LegalPageData> {
   }
   return res.json();
 }
+export async function getMetaData(page: string): Promise<MetaData> {
+  const res = await fetch(`${API_URL}/page-meta/?page=${page}`, { next: { revalidate: revalidateTime } });
+  if (!res.ok) {
+    throw new Error(`Failed to fetch meta data: ${res.status} ${res.statusText}`);
+  }
+  return res.json();
+}
 export async function getAboutPageData(): Promise<AboutUs> {
   const res = await fetch(`${API_URL}/about-us/`, { next: { revalidate: revalidateTime } });
   if (!res.ok) {
@@ -220,6 +227,7 @@ export async function getAboutPageData(): Promise<AboutUs> {
   }
   return res.json();
 }
+
 
 
 

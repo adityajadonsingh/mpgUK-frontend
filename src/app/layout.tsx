@@ -43,7 +43,6 @@ export const metadata = {
   icons: {
     icon: "/favicon.ico",
   },
-  // Optional: Add more SEO fields like open graph, twitter, etc.
 };
 
 export default async function RootLayout({

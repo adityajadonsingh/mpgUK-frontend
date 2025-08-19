@@ -9,7 +9,7 @@ export default function BlogContent({ content }: { content: string }) {
   }, [content]);
   return (
     <div
-      className="text-gray-700 prose max-w-none"
+      className="text-gray-700 prose max-w-none blog-content"
       dangerouslySetInnerHTML={{ __html: safeContent }}
     ></div>
   );

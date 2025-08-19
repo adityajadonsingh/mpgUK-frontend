@@ -3,6 +3,41 @@ import { notFound } from "next/navigation";
 import ProductDetails from "@/components/product/ProductDetails";
 import { Product, Review } from "@/types";
 import ProductReviews from "@/components/product/ProductReviews";
+import { Metadata } from "next";
+
+
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ product: string }>;
+}): Promise<Metadata> {
+  const { product } = await params;
+  const productData = await getProductDetails(product);
+  return {
+    title: productData.meta_title,
+    description: productData.meta_description,
+    keywords: productData.meta_keywords || "",
+    openGraph: {
+      title: productData.og_title || productData.meta_title || "",
+      description: productData.og_description || productData.meta_description || "",
+      url: productData.canonical_url || "",
+      images: productData.meta_image ? [productData.meta_image] : [],
+      type: "website",
+      locale: "en_US",
+      siteName: "MPG Stone",
+    },
+    twitter: {
+      title: productData.twitter_title || productData.meta_title || "",
+      description:
+        productData.twitter_decriptions || productData.meta_description || "",
+      images: productData.meta_image ? [productData.meta_image] : [],
+    },
+    alternates: {
+      canonical: productData.canonical_url || "",
+    },
+    robots: productData.robots_tag,
+  };
+}
 
 export default async function ProductDetailPage({ params } : {params : Promise<{product : string}>}) {
   const { product } = await params;
@@ -13,7 +48,6 @@ export default async function ProductDetailPage({ params } : {params : Promise<{
   try {
     productData = await getProductDetails(product);
     reviews = await getProductReviews(productData.id);
-    console.log(productData);
   } catch (err) {
     console.error(err);
     return notFound();

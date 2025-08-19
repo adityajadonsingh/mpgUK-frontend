@@ -6,6 +6,9 @@
       }
     }
   }
+  .blog-main-img, .blog-content img {
+    height: 400px;
+  }
 }
 @media only screen and (max-width: 1200px) {
   .home-banner {
@@ -22,6 +25,9 @@
   }
 }
 @media only screen and (max-width: 991px) {
+  .blog-main-img, .blog-content img {
+    height: 380px;
+  }
   .home-banner {
     height: 55vh;
   }
@@ -54,6 +60,9 @@
   }
 }
 @media only screen and (max-width: 768px) {
+  .blog-main-img, .blog-content img {
+    height: 340px;
+  }
   .product-grid {
     .card {
       height: 255px;
@@ -129,6 +138,9 @@
   }
 }
 @media only screen and (max-width: 490px) {
+  .blog-main-img, .blog-content img {
+    height: 230px;
+  }
   .product-grid {
     .card {
       height: 230px;

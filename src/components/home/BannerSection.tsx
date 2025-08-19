@@ -6,11 +6,8 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import { Pagination, Autoplay } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/pagination";
-// import "swiper/css/effect-fade";
 
 export default function BannerSection({ data }: { data: Banner[] }) {
-  // console.log(data);
-
   return (
     <section className="home-banner w-full">
       <Swiper
@@ -25,7 +22,6 @@ export default function BannerSection({ data }: { data: Banner[] }) {
         }}
         speed={800}
         effect="slide"
-
       >
         {data.map((banner) => (
           <SwiperSlide key={banner.id} className="relative w-full h-full">
@@ -37,9 +33,24 @@ export default function BannerSection({ data }: { data: Banner[] }) {
                 fill
               />
               <div className="content-box">
-                <h2 className="xl:text-4xl lg:text-3xl md:text-2xl text-xl font-bold mb-3 capitalize">{banner.title}</h2>
+                <h2 className="xl:text-4xl lg:text-3xl md:text-2xl text-xl font-bold mb-3 capitalize">
+                  {banner.title}
+                </h2>
                 <p className="mb-4 md:text-lg text-base">{banner.subtitle}</p>
-                <button className="bg-[#f36c23] hover:bg-[#e76017] cursor-pointer font-semibold text-white px-6 py-2 rounded">
+                <button
+                  onClick={() => {
+                    const el = document.getElementById("contact-section");
+                    if (el) {
+                      const yOffset = -100;
+                      const y =
+                        el.getBoundingClientRect().top +
+                        window.pageYOffset +
+                        yOffset;
+                      window.scrollTo({ top: y, behavior: "smooth" });
+                    }
+                  }}
+                  className="bg-[#f36c23] hover:bg-[#e76017] cursor-pointer font-semibold text-white px-6 py-2 rounded"
+                >
                   {banner.enquiry_button_text}
                 </button>
               </div>

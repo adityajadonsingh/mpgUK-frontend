@@ -84,7 +84,7 @@ export default function ContactSection() {
   };
 
   return (
-    <section className="contact-section md:my-10 my-5">
+    <section id="contact-section" className="contact-section md:my-10 my-5">
       <div className="container">
         <div className="grid md:grid-cols-2 grid-cols-1">
           <div className="form md:w-10/12 w-11/12 md:py-8 mx-auto">
