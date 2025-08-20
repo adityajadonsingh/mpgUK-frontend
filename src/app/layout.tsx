@@ -25,11 +25,10 @@ const montserrat = Montserrat({
 export const metadata = {
   title: {
     default: "MPG Stone | Premium Stone Products",
-    template: "%s | MPG Stone",
   },
   description:
     "MPG Stone — Showcasing premium marble, granite, and stone products for your home and commercial spaces.",
-  authors: [{ name: "MPG Stone", url: "https://mpgstone.co.uk" }],
+  authors: [{ name: "mpgstone.co.uk"}],
   robots: {
     index: false,
     follow: false,
