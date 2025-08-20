@@ -115,7 +115,7 @@ export default function ContactPopup({
         {/* Close Button */}
         <button
           onClick={onClose}
-          className="absolute top-2 right-3 text-xl text-gray-500 hover:text-black"
+          className="absolute cursor-pointer top-2 right-3 text-xl text-gray-500 hover:text-black"
         >
           &times;
         </button>
@@ -163,7 +163,7 @@ export default function ContactPopup({
           />
           <button
             type="submit"
-            className="bg-[#5a5c5d] hover:bg-[#f36c23] text-white px-6 py-2 rounded-sm font-medium w-full"
+            className="bg-[#5a5c5d] cursor-pointer hover:bg-[#f36c23] text-white px-6 py-2 rounded-sm font-medium w-full"
           >
             Submit
           </button>

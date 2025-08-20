@@ -159,7 +159,7 @@ export default function ProductDetails({
                 <li className="text-[#f36c23]">{name}</li>
               </ul>
 
-              <h2 className="text-2xl my-5 font-semibold capitalize">{name}</h2>
+              <h1 className="text-2xl my-5 font-semibold capitalize">{name}</h1>
 
               <p
                 className="text-gray-700 prose max-w-none"
