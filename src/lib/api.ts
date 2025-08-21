@@ -48,6 +48,21 @@ export async function getAllCategorys(): Promise<Category[]> {
     return [];
   }
 }
+export async function getAllProducts(): Promise<Product[]> {
+  try {
+    const res = await fetch(`${API_URL}/products`, { next: { revalidate: revalidateTime } });
+
+    if (!res.ok) {
+      console.error("Error fetching all products:", res.status, res.statusText);
+      return [];
+    }
+
+    return res.json();
+  } catch (error) {
+    console.error("Failed to fetch products:", error);
+    return [];
+  }
+}
 
 export async function getCategoryBySlug(category: string): Promise<Category[]> {
   const res = await fetch(`${API_URL}/categories/?category_slug=${category}`, { next: { revalidate: revalidateTime } });
@@ -79,7 +94,7 @@ export async function getProductsByCategory(slug: string, page: number): Promise
     totalPages,
   };
 }
-export async function getAllProducts(page: number): Promise<paginatedProducts> {
+export async function getPaginatedProducts(page: number): Promise<paginatedProducts> {
   const res = await fetch(`${API_URL}/products/`, { next: { revalidate: revalidateTime } });
   const allProducts = await res.json();
 

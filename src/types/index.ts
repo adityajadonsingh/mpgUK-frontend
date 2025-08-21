@@ -30,6 +30,7 @@ export interface Category {
   publisher: null;
   schema_markup: string;
   is_active: boolean;
+  updated_at: string;
 }
 
 export interface GalleryType {
@@ -64,12 +65,25 @@ export interface Product {
   is_active: boolean;
   gallery_images: GalleryType[];
   attributes: AttributeType[];
+  updated_at: string;
 }
 
 export interface ContactDetails {
   phones: string[];
   emails: string[];
   address: string;
+}
+
+type JSONValue = string | number | boolean | null | JSONObject | JSONArray;
+interface JSONObject {
+  [key: string]: JSONValue;
+}
+type JSONArray = JSONValue[];
+
+export interface Schema {
+  id: number;
+  name: string;
+  schema_json: JSONObject;
 }
 
 export interface HomepageContent {
@@ -86,12 +100,11 @@ export interface HomepageContent {
   canonical_url: string | null;
   robots_tag: string;
   publisher: string | null;
-  schema_markup: string;
+  schemas: Schema[]; 
   main_heading: string;
   description_paragraph: string;
   about_section: AboutSection;
 }
-
 
 export interface AboutSection {
   subtitle: string;

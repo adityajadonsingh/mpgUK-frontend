@@ -1,6 +1,6 @@
 import ProductGrid from "@/components/category/ProductGrid";
 import PageBanner from "@/components/PageBanner";
-import { getAllProducts, getMetaData } from "@/lib/api";
+import { getPaginatedProducts, getMetaData } from "@/lib/api";
 import { MetaData } from "@/types";
 import { Metadata } from "next";
 
@@ -33,7 +33,7 @@ export async function generateMetadata(): Promise<Metadata> {
 }
 
 export default async function ProductsPage() {
-  const { products, totalPages } = await getAllProducts(1);
+  const { products, totalPages } = await getPaginatedProducts(1);
   return (
     <>
       <PageBanner

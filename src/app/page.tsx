@@ -6,6 +6,7 @@ import CategorySlider from "@/components/home/CategorySlider";
 import ContactSection from "@/components/home/ContactSection";
 import FeatureCard from "@/components/home/FeatureCard";
 import TestimonialSection from "@/components/home/TestimonialSection";
+import SchemaInjector from "@/components/SchemaInjector";
 import { getBlogs, getHomeBanners, getHomePageData, getTestimonials } from "@/lib/api";
 import { Banner, HomepageContent } from "@/types";
 import { Metadata } from "next";
@@ -63,6 +64,7 @@ export default async function HomePage() {
       <BlogsSection data={blogs} />
       <ContactSection />
       <FooterContent content={homepageContent.content} isFullPage={false}/>
+      <SchemaInjector schemas={homepageContent.schemas}/>
     </>
   );
 }
