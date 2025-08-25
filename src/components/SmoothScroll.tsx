@@ -12,6 +12,15 @@ export default function SmoothScroll() {
       touchMultiplier: 1.5,
     });
 
+    const preventScroll = (e: WheelEvent) => {
+      const target = e.target as HTMLElement;
+      if (target.closest("[data-lenis-prevent]")) {
+        e.stopPropagation();
+      }
+    };
+
+    window.addEventListener("wheel", preventScroll, { passive: false });
+
     function raf(time: number) {
       lenis.raf(time);
       requestAnimationFrame(raf);
@@ -19,7 +28,10 @@ export default function SmoothScroll() {
 
     requestAnimationFrame(raf);
 
-    return () => lenis.destroy();
+    return () => {
+      window.removeEventListener("wheel", preventScroll);
+      lenis.destroy();
+    };
   }, []);
 
   return null;

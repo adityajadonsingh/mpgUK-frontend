@@ -5,8 +5,9 @@ import Image from "next/image";
 import { useState } from "react";
 import { useSiteData } from "@/context/SiteDataContext";
 import SearchPopup from "@/components/SearchPopup";
+import { Product } from "@/types";
 
-export default function Header() {
+export default function Header({products} : {products : Product[]}) {
   const { categories, contactDetails } = useSiteData();
   const [isSearchOpen, setIsSearchOpen] = useState(false);
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
@@ -166,6 +167,8 @@ export default function Header() {
       <SearchPopup
         isOpen={isSearchOpen}
         onClose={() => setIsSearchOpen(false)}
+        categories={categories}
+        products={products}
       />
     </>
   );

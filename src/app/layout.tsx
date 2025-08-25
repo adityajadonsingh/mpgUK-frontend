@@ -11,8 +11,8 @@ import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import GoogleAnalytics from "@/components/GoogleAnalytics";
 
-import { getAllCategorys, getContactDetails, getSocialMedia } from "@/lib/api";
-import { Category, ContactDetails } from "@/types";
+import { getAllCategorys, getAllProducts, getContactDetails, getSocialMedia } from "@/lib/api";
+import { Category, ContactDetails, Product } from "@/types";
 
 import { Montserrat } from "next/font/google";
 import SmoothScroll from "@/components/SmoothScroll";
@@ -49,6 +49,7 @@ export default async function RootLayout({
 }: {
   children: ReactNode;
 }) {
+  const products: Product[] = await getAllProducts();
   const categories: Category[] = await getAllCategorys();
   const contactDetails: ContactDetails[] = await getContactDetails();
   const { social_media_links } = await getSocialMedia();
@@ -77,7 +78,7 @@ export default async function RootLayout({
           contactDetails={contactDetails}
         >
           <SmoothScroll />
-          <Header />
+          <Header products={products} />
           <main>{children}</main>
           <Footer socialMedia={social_media_links} />
         </SiteDataProvider>
