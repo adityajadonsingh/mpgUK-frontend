@@ -3,7 +3,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { notFound } from "next/navigation";
 import BlogContent from "@/components/blogs/BlogContent";
-import { Blog, BlogCategory } from "@/types";
+import { Blog, BlogCategory, JSONObject, Schema } from "@/types";
 import CopyUrlButton from "@/components/blogs/CopyUrlButton";
 import FacebookShareButton from "@/components/blogs/FacebookShareButton";
 import XShareButton from "@/components/blogs/XShareButton";
@@ -11,6 +11,7 @@ import LinkedInShareButton from "@/components/blogs/LinkedInShareButton";
 import CommentSection from "@/components/blogs/CommentSection";
 
 import { Metadata } from "next";
+import SchemaInjector from "@/components/SchemaInjector";
 
 export async function generateMetadata({
   params,
@@ -67,6 +68,76 @@ export default async function BlogsPage({
     .slice(0, 5);
   const prevPost = data.blogs.filter((b) => b.id === blog.id - 1);
   const nextPost = data.blogs.filter((b) => b.id === blog.id + 1);
+  const commonSchema = {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    mainEntityOfPage: {
+      "@type": "WebPage",
+      "@id": `https://mpgstone.co.uk/blogs/${blog.slug}/`,
+    },
+    headline: blog.title,
+    description: blog.meta_description,
+    image: blog.meta_img,
+    author: {
+      "@type": "Person",
+      name: "Jaya Tripathi",
+      url: "https://mpgstone.co.uk/author/jaya_tripathi/",
+    },
+    publisher: {
+      "@type": "Organization",
+      name: "MPG Stone",
+      logo: {
+        "@type": "ImageObject",
+        url: "https://mpgstone.co.uk/media/logo.svg",
+      },
+    },
+    datePublished: new Date(blog.date_posted).toISOString(),
+  };
+
+  const breadcrumbSchema = {
+    "@context": "https://schema.org/",
+    "@type": "BreadcrumbList",
+    itemListElement: [
+      {
+        "@type": "ListItem",
+        position: 1,
+        name: "Home",
+        item: "https://mpgstone.co.uk/",
+      },
+      {
+        "@type": "ListItem",
+        position: 2,
+        name: "Blogs",
+        item: "https://mpgstone.co.uk/blogs/",
+      },
+      {
+        "@type": "ListItem",
+        position: 3,
+        name: blog.title,
+        item: `https://mpgstone.co.uk/blogs/${blog.slug}/`,
+      },
+    ],
+  };
+
+  const normalizeSchema = (schema: Schema | JSONObject): Schema =>
+    "schema_json" in schema
+      ? (schema as Schema)
+      : { id: 0, name: "", schema_json: schema };
+
+  const rawSchemas: (Schema | JSONObject)[] = [
+    breadcrumbSchema,
+    commonSchema,
+    ...(Array.isArray(blog?.schema_markup) ? blog?.schema_markup : []),
+  ];
+
+  const safeSchemas: Schema[] = Array.from(
+    new Map(
+      rawSchemas.map((schema) => {
+        const normalized = normalizeSchema(schema);
+        return [JSON.stringify(normalized.schema_json), normalized];
+      })
+    ).values()
+  );
   return (
     <>
       <section className="blog-page my-10">
@@ -225,6 +296,8 @@ export default async function BlogsPage({
           </div>
         </div>
       </section>
+
+      <SchemaInjector schemas={safeSchemas} />
     </>
   );
 }

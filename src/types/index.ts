@@ -28,9 +28,9 @@ export interface Category {
   canonical_url: string;
   robots_tag: string;
   publisher: null;
-  schema_markup: string;
   is_active: boolean;
   updated_at: string;
+  schemas: Schema[]; 
 }
 
 export interface GalleryType {
@@ -61,7 +61,7 @@ export interface Product {
   canonical_url: string;
   robots_tag: string;
   publisher: null;
-  schema_markup: string;
+  schemas: Schema[];
   is_active: boolean;
   gallery_images: GalleryType[];
   attributes: AttributeType[];
@@ -75,7 +75,7 @@ export interface ContactDetails {
 }
 
 type JSONValue = string | number | boolean | null | JSONObject | JSONArray;
-interface JSONObject {
+export interface JSONObject {
   [key: string]: JSONValue;
 }
 type JSONArray = JSONValue[];

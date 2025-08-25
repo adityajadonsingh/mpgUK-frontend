@@ -1,11 +1,13 @@
 import CategoryBanner from "@/components/category/CategoryBanner";
 import ProductGrid from "@/components/category/ProductGrid";
 import FooterContent from "@/components/FooterContent";
+import SchemaInjector from "@/components/SchemaInjector";
 import {
   getAllCategorys,
   getCategoryBySlug,
   getProductsByCategory,
 } from "@/lib/api";
+import { JSONObject, Schema } from "@/types";
 import { Metadata } from "next";
 import { notFound } from "next/navigation";
 
@@ -63,6 +65,49 @@ export default async function CategoryPage({
     getParams.category,
     1
   );
+  const breadcrumbSchema = {
+    "@context": "https://schema.org/",
+    "@type": "BreadcrumbList",
+    itemListElement: [
+      {
+        "@type": "ListItem",
+        position: 1,
+        name: "Home",
+        item: "https://mpgstone.co.uk/",
+      },
+      {
+        "@type": "ListItem",
+        position: 2,
+        name: "Product Category",
+        item: "https://mpgstone.co.uk/product-category/",
+      },
+      {
+        "@type": "ListItem",
+        position: 3,
+        name: category.category_name,
+        item: `https://mpgstone.co.uk/product-category/${category.slug}/`,
+      },
+    ],
+  };
+
+  const normalizeSchema = (schema: Schema | JSONObject): Schema =>
+    "schema_json" in schema
+      ? (schema as Schema)
+      : { id: 0, name: "", schema_json: schema };
+
+  const rawSchemas: (Schema | JSONObject)[] = [
+    breadcrumbSchema,
+    ...(Array.isArray(category.schemas) ? category.schemas : []),
+  ];
+
+  const safeSchemas: Schema[] = Array.from(
+    new Map(
+      rawSchemas.map((schema) => {
+        const normalized = normalizeSchema(schema);
+        return [JSON.stringify(normalized.schema_json), normalized];
+      })
+    ).values()
+  );
 
   return (
     <>
@@ -85,6 +130,7 @@ export default async function CategoryPage({
         categorySlug={getParams.category}
       />
       <FooterContent content={category.descriptions} isFullPage={false} />
+      <SchemaInjector schemas={safeSchemas}/>
     </>
   );
 }
