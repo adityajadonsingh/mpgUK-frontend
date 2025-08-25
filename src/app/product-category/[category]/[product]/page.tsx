@@ -99,7 +99,7 @@ export default async function ProductDetailPage({ params } : {params : Promise<{
     "aggregateRating": {
       "@type": "AggregateRating",
       "ratingValue": "5",
-      "ratingCount": "10"
+      "ratingCount": "15"
     }
   }
 

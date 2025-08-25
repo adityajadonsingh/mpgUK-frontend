@@ -272,7 +272,7 @@ export default async function BlogsPage({
                         key={idx}
                         className="mb-4 p-3 bg-white rounded-md shadow-sm hover:shadow-md"
                       >
-                        <Link href={""}>
+                        <Link href={blog.slug}>
                           <div className="flex">
                             <div className="img relative">
                               <Image
