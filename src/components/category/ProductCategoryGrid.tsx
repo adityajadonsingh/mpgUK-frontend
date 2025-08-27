@@ -24,7 +24,7 @@ export default function ProductCategoryGrid() {
                   height={400}
                   className="w-full h-auto rounded-2xl group-hover:scale-105 transition-transform duration-300"
                 />
-                <div className="absolute inset-0 bg-black/40 group-hover:bg-black/60 transition-colors duration-300 flex items-center justify-center">
+                <div className="absolute inset-0 bg-black/20 group-hover:bg-black/40 transition-colors duration-300 flex items-center justify-center">
                   <h3 className="text-white text-xl capitalize font-semibold text-center px-4">
                     {category.category_name}
                   </h3>

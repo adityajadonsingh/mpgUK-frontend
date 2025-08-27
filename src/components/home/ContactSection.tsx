@@ -149,7 +149,7 @@ export default function ContactSection() {
 
           <div className="img-box relative md:w-10/12 w-11/12 md:block none mx-auto h-full">
             <Image
-              src="/media/contact-home.png"
+              src="/media/contact-image.webp"
               alt="Contact Us"
               fill
               className="object-cover rounded-sm"
