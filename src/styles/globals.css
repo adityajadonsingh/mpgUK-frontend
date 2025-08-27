@@ -440,7 +440,7 @@ a {
   left: 0;
   width: 100%;
   height: 100%;
-  background-color: #0c0c0d5b;
+  background-color: #0c0c0da8;
   z-index: 1;
 }
 .category-banner {
@@ -707,7 +707,7 @@ a {
     }
   }
 }
-.blog-main-img {
+.blog-main-img{
   height: 450px;
 }
 
