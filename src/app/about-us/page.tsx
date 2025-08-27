@@ -39,7 +39,7 @@ export default async function AboutUsPage() {
   return (
     <>
       <PageBanner
-        bgImg={"/media/product_category_banner.jpeg"}
+        bgImg={"/media/about-banner.webp"}
         pageName={"About Us"}
         breadcrum={[{ slug_name: "About Us", slug_url: "" }]}
       />

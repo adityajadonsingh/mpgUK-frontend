@@ -113,7 +113,8 @@ export default async function CategoryPage({
     <>
       <CategoryBanner
         pageName={category.category_name}
-        bgImg={category.image}
+        bgImg={category.banner_image}
+        bgImgAlt={category.banner_alt_text}
         breadcrum={[
           { slug_name: "Product Category", slug_url: "/product-category/" },
           {

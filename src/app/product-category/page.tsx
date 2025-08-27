@@ -45,7 +45,7 @@ export default function ProductCategory() {
     <>
       <PageBanner
         breadcrum={breadcrum}
-        bgImg={"/media/breadcumb.jpg"}
+        bgImg={"/media/category-banner.webp"}
         pageName="Product Category"
       />
       <ProductCategoryGrid />

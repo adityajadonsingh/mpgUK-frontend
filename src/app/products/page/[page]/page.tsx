@@ -22,7 +22,7 @@ export default async function ProductsPagePaginated({
   return (
     <>
       <PageBanner
-        bgImg={"/media/product_category_banner.jpeg"}
+        bgImg={"/media/products-banner.webp"}
         pageName={"Products"}
         breadcrum={[{ slug_name: "Products", slug_url: "" }]}
       />

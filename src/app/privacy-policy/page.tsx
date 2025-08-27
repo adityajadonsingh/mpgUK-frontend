@@ -39,7 +39,7 @@ export default async function PrivacyPolicy() {
   return (
     <>
       <PageBanner
-        bgImg={"/media/product_category_banner.jpeg"}
+        bgImg={"/media/privacy-banner.webp"}
         pageName={"Privacy Policy"}
         breadcrum={[{ slug_name: "Privacy Policy", slug_url: "" }]}
       />

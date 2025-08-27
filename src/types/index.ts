@@ -31,6 +31,8 @@ export interface Category {
   is_active: boolean;
   updated_at: string;
   schemas: Schema[]; 
+  banner_image: string;
+  banner_alt_text: string;
 }
 
 export interface GalleryType {

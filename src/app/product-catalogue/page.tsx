@@ -38,7 +38,7 @@ export default async function ProductCatalouguePage() {
   return (
     <>
       <PageBanner
-        bgImg="/media/contact_banner.jpeg"
+        bgImg="/media/catalogue-banner.webp"
         pageName="Product Catalogue"
         breadcrum={[{ slug_name: "Product Catalogue", slug_url: "" }]}
       />

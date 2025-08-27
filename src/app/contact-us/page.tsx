@@ -40,7 +40,7 @@ export default async function ContactPage() {
   return (
     <>
       <PageBanner
-        bgImg="/media/contact_banner.jpeg"
+        bgImg="/media/contact-banner.webp"
         pageName="Contact Us"
         breadcrum={[{ slug_name: "Contact Us", slug_url: "" }]}
       />

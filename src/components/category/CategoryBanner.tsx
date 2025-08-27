@@ -8,11 +8,13 @@ interface bread {
 
 export default function CategoryBanner({
   bgImg,
+  bgImgAlt,
   pageName,
   breadcrum,
   short_description
 }: {
   bgImg: string;
+  bgImgAlt: string;
   pageName: string;
   breadcrum: bread[];
   short_description: string;
@@ -22,7 +24,7 @@ export default function CategoryBanner({
       <section className="page-banner category-banner flex justify-start items-center relative">
         <Image
           src={bgImg}
-          alt={"banner image"}
+          alt={bgImgAlt}
           fill
           className="object-cover z-0"
         />
