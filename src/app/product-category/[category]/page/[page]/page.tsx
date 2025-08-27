@@ -68,7 +68,8 @@ export default async function PaginatedCategoryPage({ params } : {params : Promi
     <>
       <CategoryBanner
         pageName={category.category_name}
-        bgImg={category.image}
+        bgImg={category.banner_image}
+        bgImgAlt={category.banner_alt_text}
         breadcrum={bread}
         short_description={category.short_description}
       />
