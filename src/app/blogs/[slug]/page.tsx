@@ -49,7 +49,7 @@ export async function generateMetadata({
     alternates: {
       canonical: blog.canonical_url || "",
     },
-    robots: blog.robot_tag,
+    robots: blog.robots_tag,
   };
 }
 
@@ -118,7 +118,6 @@ export default async function BlogsPage({
       },
     ],
   };
-
   const normalizeSchema = (schema: Schema | JSONObject): Schema =>
     "schema_json" in schema
       ? (schema as Schema)
@@ -155,7 +154,7 @@ export default async function BlogsPage({
                   <Link href={"/blogs/"}>Blogs</Link>
                 </li>
                 <li>/</li>
-                <li className="text-[#f36c23]">{blog?.title}</li>
+                <li className="text-[#f36c23] capitalize">{blog?.slug.replace(/-/g, " ")}</li>
               </ul>
               <div className="blog-content">
                 <h1 className="md:text-3xl text-xl font-semibold mt-5 mb-2">
@@ -186,14 +185,10 @@ export default async function BlogsPage({
                   <h5 className="font-semibold text-xl">About the Autor</h5>
                   <hr className="my-3" />
                   <p>
-                    <Link href={"/author/"}>
+                    
+                    Blending her love for natural stones with a keen eye for décor, <Link href={"/author/jaya_tripathi"}>
                       <strong className="text-[#f48245]">Jaya Tripathi</strong>
-                    </Link>{" "}
-                    is a seasoned content writer and editor with over a decade
-                    of experience in the stone and real estate industries. As a
-                    leading voice at MPG Stone, she shares insights on
-                    installment processes, project insights, design guides, and
-                    much more
+                    </Link>{" "} writes about design ideas that make everyday spaces extraordinary. From stylish interiors to durable exteriors, her work highlights the versatility of stone while inspiring readers to experiment with timeless design elements.
                   </p>
                 </div>
                 <div className="blog-btm flex justify-between items-center mt-8">

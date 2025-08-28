@@ -141,7 +141,7 @@ export interface Blog {
   twitter_title: string;
   twitter_description: string;
   canonical_url: string;
-  robot_tag: string;
+  robots_tag: string;
   publisher: string;
   schema_markup: string;
   date_posted: string;
