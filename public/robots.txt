@@ -1,4 +1,4 @@
-# Your rules
+# Updated on Aug 28, 2025
 User-agent: *
 Allow: /
 Disallow: /blog-category/

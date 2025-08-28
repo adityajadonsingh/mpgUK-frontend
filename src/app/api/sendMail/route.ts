@@ -67,15 +67,15 @@ export async function POST(request: Request) {
         </thead>
         <tbody>
           ${rows
-            .map(
-              ([label, value], i) => `
+        .map(
+          ([label, value], i) => `
             <tr style="background-color: ${i % 2 === 0 ? "#f9f9f9" : "#ffffff"};">
               <td style="border: 1px solid #ddd; padding: 8px; font-weight: bold; color: #5a5c5d;">${label}</td>
               <td style="border: 1px solid #ddd; padding: 8px;">${value || "-"}</td>
             </tr>
           `
-            )
-            .join("")}
+        )
+        .join("")}
         </tbody>
       </table>
     `;
