@@ -31,13 +31,13 @@ export const metadata = {
     "MPG Stone — Showcasing premium marble, granite, and stone products for your home and commercial spaces.",
   authors: [{ name: "mpgstone.co.uk"}],
   robots: {
-    index: false,
-    follow: false,
+    index: true,
+    follow: true,
     nocache: false,
     googleBot: {
-      index: false,
-      follow: false,
-      noimageindex: true,
+      index: true,
+      follow: true,
+      noimageindex: false,
     },
   },
   icons: {
