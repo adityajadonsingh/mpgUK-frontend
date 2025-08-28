@@ -12,41 +12,49 @@ export default function Footer({
 }) {
   const { categories, contactDetails } = useSiteData();
   return (
-    <footer className="footer">
-      <div className="container">
-        <div className="grid xl:grid-cols-[34%_17%_16%_30%] lg:grid-cols-[30%_17%_16%_32%] md:grid-cols-[38%_29%_29%] sm:grid-cols-2 grid-cols-1 gap-4">
-          <div className="logo">
-            <div className="img relative h-[52px] w-[180px] mb-3">
-              <Image
-                src="/media/logo.svg"
-                alt={"logo"}
-                fill
-                className="object-contain"
-              />
+    <>
+      <footer className="footer">
+        <div className="container">
+          <div className="grid xl:grid-cols-[34%_17%_16%_30%] lg:grid-cols-[30%_17%_16%_32%] md:grid-cols-[38%_29%_29%] sm:grid-cols-2 grid-cols-1 gap-4">
+            <div className="logo">
+              <div className="img relative h-[52px] w-[180px] mb-3">
+                <Image
+                  src="/media/logo.svg"
+                  alt={"logo"}
+                  fill
+                  className="object-contain"
+                />
+              </div>
+              <p className="text-sm pr-8">
+                A leading manufacturer and supplier of natural stone in the
+                United Kingdom and around the globe. MPG Stone has become one of
+                the leading suppliers of natural stone and floor tiles. Explore
+                a diverse selection of high-quality products, including pavers,
+                cobblestones, indoor tiles, natural stone pavers, and various
+                types of marble flooring.
+              </p>
+              <div className="social-media mt-6">
+                <ul className="flex gap-x-3">
+                  {socialMedia.map((social) => (
+                    <li key={social.id + "-social"}>
+                      <Link href={social.url} target="_blank">
+                        <div className="w-[35px] h-[35px] rounded-full bg-[#5a5c5d] hover:bg-[#f36c23] flex justify-center items-center">
+                          <i
+                            className={`bi bi-${social.platform} text-white`}
+                          ></i>
+                        </div>
+                      </Link>
+                    </li>
+                  ))}
+                </ul>
+              </div>
             </div>
-            <p className="text-sm pr-8">
-              A leading manufacturer and supplier of natural stone in the United Kingdom and around the globe. MPG Stone has become one of the leading suppliers of natural stone and floor tiles. Explore a diverse selection of high-quality products, including pavers, cobblestones, indoor tiles, natural stone pavers, and various types of marble flooring.
-            </p>
-            <div className="social-media mt-6">
-              <ul className="flex gap-x-3">
-                {
-                  socialMedia.map(social => <li key={social.id+"-social"}>
-                  <Link href={social.url} target="_blank">
-                    <div className="w-[35px] h-[35px] rounded-full bg-[#5a5c5d] hover:bg-[#f36c23] flex justify-center items-center">
-                      <i className={`bi bi-${social.platform} text-white`}></i>
-                    </div>
-                  </Link>
-                </li>)
-                }
-              </ul>
-            </div>
-          </div>
 
-          <div className="widget">
-            <h4 className="text-2xl mt-3 mb-5 font-semibold">Categories</h4>
-            <ul className="widget-lists">
-              {categories.map((category) => {
-                return (
+            <div className="widget">
+              <h4 className="text-2xl mt-3 mb-5 font-semibold">Categories</h4>
+              <ul className="widget-lists">
+                {categories.map((category) => {
+                  return (
                     <li key={`${category.id}`}>
                       <div className="details">
                         <Link href={`/product-category/${category.slug}`}>
@@ -54,94 +62,104 @@ export default function Footer({
                         </Link>
                       </div>
                     </li>
-                );
-              })}
-            </ul>
+                  );
+                })}
+              </ul>
+            </div>
+            <div className="widget">
+              <h4 className="text-2xl mt-3 mb-5 font-semibold">Quick Links</h4>
+              <ul className="widget-lists">
+                <li>
+                  <div className="details">
+                    <Link href={`/about-us/`}>About Us</Link>
+                  </div>
+                </li>
+                <li>
+                  <div className="details">
+                    <Link href={`/contact-us/`}>Contact Us</Link>
+                  </div>
+                </li>
+                <li>
+                  <div className="details">
+                    <Link href={`/blogs/`}>Blogs</Link>
+                  </div>
+                </li>
+                <li>
+                  <div className="details">
+                    <Link href={`/products/`}>Products</Link>
+                  </div>
+                </li>
+                <li>
+                  <div className="details">
+                    <Link href={`/product-category/`}>Product Category</Link>
+                  </div>
+                </li>
+                <li>
+                  <div className="details">
+                    <Link href={`/product-catalogue/`}>Product Catalogue</Link>
+                  </div>
+                </li>
+                <li>
+                  <div className="details">
+                    <Link href={`/terms-and-conditions/`}>
+                      Terms & Conditions
+                    </Link>
+                  </div>
+                </li>
+                <li>
+                  <div className="details">
+                    <Link href={`/privacy-policy/`}>Privacy Policy</Link>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div className="widget">
+              <h4 className="text-2xl mt-3 mb-5 font-semibold">Contact Us</h4>
+              <ul className="widget-lists">
+                <li className="flex gap-x-4">
+                  <div className="icn">
+                    <i className="bi bi-telephone-fill text-lg"></i>
+                  </div>
+                  <div className="details">
+                    <Link href={`tel:${contactDetails[0]?.phones[0]}`}>
+                      {contactDetails[0]?.phones[0]}
+                    </Link>
+                  </div>
+                </li>
+                <li className="flex gap-x-4">
+                  <div className="icn">
+                    <i className="bi bi-envelope-fill text-lg"></i>
+                  </div>
+                  <div className="details">
+                    <Link href={`mailto:${contactDetails[0]?.emails[0]}`}>
+                      {contactDetails[0]?.emails[0]}
+                    </Link>
+                  </div>
+                </li>
+                <li className="flex gap-x-4">
+                  <div className="icn">
+                    <i className="bi bi-geo-alt-fill text-lg"></i>
+                  </div>
+                  <div className="details">
+                    <span className="text">{contactDetails[0]?.address}</span>
+                  </div>
+                </li>
+              </ul>
+            </div>
           </div>
-          <div className="widget">
-            <h4 className="text-2xl mt-3 mb-5 font-semibold">Quick Links</h4>
-            <ul className="widget-lists">
-              <li>
-                <div className="details">
-                  <Link href={`/about-us/`}>About Us</Link>
-                </div>
-              </li>
-              <li>
-                <div className="details">
-                  <Link href={`/contact-us/`}>Contact Us</Link>
-                </div>
-              </li>
-              <li>
-                <div className="details">
-                  <Link href={`/blogs/`}>Blogs</Link>
-                </div>
-              </li>
-              <li>
-                <div className="details">
-                  <Link href={`/products/`}>Products</Link>
-                </div>
-              </li>
-              <li>
-                <div className="details">
-                  <Link href={`/product-category/`}>Product Category</Link>
-                </div>
-              </li>
-              <li>
-                <div className="details">
-                  <Link href={`/product-catalogue/`}>Product Catalogue</Link>
-                </div>
-              </li>
-              <li>
-                <div className="details">
-                  <Link href={`/terms-and-conditions/`}>
-                    Terms & Conditions
-                  </Link>
-                </div>
-              </li>
-              <li>
-                <div className="details">
-                  <Link href={`/privacy-policy/`}>Privacy Policy</Link>
-                </div>
-              </li>
-            </ul>
-          </div>
-          <div className="widget">
-            <h4 className="text-2xl mt-3 mb-5 font-semibold">Contact Us</h4>
-            <ul className="widget-lists">
-              <li className="flex gap-x-4">
-                <div className="icn">
-                  <i className="bi bi-telephone-fill text-lg"></i>
-                </div>
-                <div className="details">
-                  <Link href={`tel:${contactDetails[0]?.phones[0]}`}>
-                    {contactDetails[0]?.phones[0]}
-                  </Link>
-                </div>
-              </li>
-              <li className="flex gap-x-4">
-                <div className="icn">
-                  <i className="bi bi-envelope-fill text-lg"></i>
-                </div>
-                <div className="details">
-                  <Link href={`mailto:${contactDetails[0]?.emails[0]}`}>
-                    {contactDetails[0]?.emails[0]}
-                  </Link>
-                </div>
-              </li>
-              <li className="flex gap-x-4">
-                <div className="icn">
-                  <i className="bi bi-geo-alt-fill text-lg"></i>
-                </div>
-                <div className="details">
-                  <span className="text">{contactDetails[0]?.address}</span>
-                </div>
-              </li>
-            </ul>
-          </div>
+          <hr className="my-3" />
+          <span className="block text-center">
+            Copyright © 2025 MPG Stone. All rights reserved.
+          </span>
         </div>
-        <hr className="my-3" />
-        <span className="block text-center">Copyright © 2025 MPG Stone. All rights reserved.</span>
+      </footer>
+      <div className="whatsapp-float">
+        <a href="https://wa.me/+13212942352" target="_blank">
+          <div className="icn">
+            <i className="bi bi-whatsapp"></i>
+          </div>
+        </a>
       </div>
-    </footer>
+    </>
   );
 }

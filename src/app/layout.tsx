@@ -16,6 +16,7 @@ import { Category, ContactDetails, Product } from "@/types";
 
 import { Montserrat } from "next/font/google";
 import SmoothScroll from "@/components/SmoothScroll";
+import Script from "next/script";
 
 const montserrat = Montserrat({
   subsets: ["latin"],
@@ -71,6 +72,23 @@ export default async function RootLayout({
           href="/apple-touch-icon.png"
         />
         <link rel="manifest" href="/site.webmanifest" />
+        <Script
+          id="tawk-to"
+          strategy="afterInteractive"
+          dangerouslySetInnerHTML={{
+            __html: `
+              var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
+              (function(){
+                var s1=document.createElement("script"),s0=document.getElementsByTagName("script")[0];
+                s1.async=true;
+                s1.src='https://embed.tawk.to/68afffcbbe8646192a41972b/1j3nnudmm';
+                s1.charset='UTF-8';
+                s1.setAttribute('crossorigin','*');
+                s0.parentNode.insertBefore(s1,s0);
+              })();
+            `,
+          }}
+        />
       </head>
       <body className={montserrat.className}>
         <SiteDataProvider
@@ -80,6 +98,7 @@ export default async function RootLayout({
           <SmoothScroll />
           <Header products={products} />
           <main>{children}</main>
+
           <Footer socialMedia={social_media_links} />
         </SiteDataProvider>
       </body>
