@@ -37,7 +37,7 @@ export default async function BlogPage() {
     <>
       <PageBanner
         pageName="Blogs"
-        bgImg={"/media/product_category_banner.jpeg"}
+        bgImg={"/media/blog-banner.webp"}
         breadcrum={[
           {
             slug_name: "Blogs",
