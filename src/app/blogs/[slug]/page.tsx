@@ -168,7 +168,7 @@ export default async function BlogsPage({
                   <li>|</li>
                   <li>
                     <i className="bi bi-person-fill text-[#f48245] text-[17px]"></i>{" "}
-                    Author : <Link href={"/author/jaya_tripathi"}>Jaya Tripathi</Link>
+                    Author : <Link className="text-[#f48245] hover:text-[#ff6b1c]" href={"/author/jaya_tripathi"}>Jaya Tripathi</Link>
                   </li>
                 </ul>
                 <hr className="mt-4 mb-5" />
