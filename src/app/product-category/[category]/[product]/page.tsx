@@ -73,17 +73,16 @@ export default async function ProductDetailPage({
   try {
     productData = await getProductDetails(product);
     categories = await getCategoryBySlug(category);
-    if (!categories || categories.length === 0) {
+    const checkCategory = categories.some(category => category.slug === productData.category.replace(/ /g, "-").toLowerCase());
+
+    if (!categories || categories.length === 0 || !productData || !checkCategory) {
       return notFound();
     }
-    if (!productData) return notFound();
     reviews = await getProductReviews(productData.id);
   } catch (err) {
     console.error(err);
     return notFound();
   }
-
-  console.log(categories, productData);
 
   const gallery = [...productData.gallery_images];
   gallery.unshift({
