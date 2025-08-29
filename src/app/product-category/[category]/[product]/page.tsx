@@ -1,19 +1,31 @@
-import { getProductDetails, getProductReviews } from "@/lib/api";
+import { getAllProducts, getCategoryBySlug, getProductDetails, getProductReviews } from "@/lib/api";
 import { notFound } from "next/navigation";
 import ProductDetails from "@/components/product/ProductDetails";
-import { JSONObject, Product, Review, Schema } from "@/types";
+import { Category, JSONObject, Product, Review, Schema } from "@/types";
 import ProductReviews from "@/components/product/ProductReviews";
 import { Metadata } from "next";
 import SchemaInjector from "@/components/SchemaInjector";
+
+export async function generateStaticParams() {
+  const allProducts: Product[] = await getAllProducts();
+  return allProducts.map((product) => ({
+    category: product.category.replace(/ /g, "-").toLowerCase(),
+    product: product.slug,
+  }));
+}
 
 
 export async function generateMetadata({
   params,
 }: {
-  params: Promise<{ product: string }>;
+  params: Promise<{category: string , product: string }>;
 }): Promise<Metadata> {
-  const { product } = await params;
+  const { category , product } = await params;
+  const categories = await getCategoryBySlug(category);
   const productData = await getProductDetails(product);
+
+  if(!categories || !productData) return {}; 
+
   return {
     title: productData.meta_title,
     description: productData.meta_description,
@@ -40,20 +52,24 @@ export async function generateMetadata({
   };
 }
 
-export default async function ProductDetailPage({ params } : {params : Promise<{product : string}>}) {
-  const { product } = await params;
+export default async function ProductDetailPage({ params } : {params : Promise<{
+  category : string;
+  product : string;}>}) {
+  const { category , product } = await params;
 
   let productData: Product;
+  let categories: Category[];
   let reviews: Review[];
-
   try {
     productData = await getProductDetails(product);
+    categories = await getCategoryBySlug(category);
     reviews = await getProductReviews(productData.id);
   } catch (err) {
     console.error(err);
     return notFound();
   }
-
+  
+  if (!categories) return notFound();
   if (!productData) return notFound();
 
   const gallery = [...productData.gallery_images];

@@ -5,6 +5,7 @@ Disallow: /blog-category/
 Disallow: /*?page=
 Disallow: /admin/
 Disallow: /api/
+Disallow: /cdn-cgi/
 Disallow: /_next/
 Disallow: /static/
 Disallow: /server/

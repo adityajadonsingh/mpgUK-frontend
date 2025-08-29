@@ -13,6 +13,14 @@ import CommentSection from "@/components/blogs/CommentSection";
 import { Metadata } from "next";
 import SchemaInjector from "@/components/SchemaInjector";
 
+export async function generateStaticParams() {
+  const data: { blogs: Blog[] } = await getBlogs();
+
+  return data.blogs.map((blog) => ({
+    slug: blog.slug,
+  }));
+}
+
 export async function generateMetadata({
   params,
 }: {
@@ -168,7 +176,7 @@ export default async function BlogsPage({
                   <li>|</li>
                   <li>
                     <i className="bi bi-person-fill text-[#f48245] text-[17px]"></i>{" "}
-                    Author : <Link className="text-[#f48245] hover:text-[#ff6b1c]" href={"/author/jaya_tripathi"}>Jaya Tripathi</Link>
+                    Author : <span className="text-[#f48245] hover:text-[#ff6b1c]"><Link href={"/author/jaya_tripathi"}>Jaya Tripathi</Link></span>
                   </li>
                 </ul>
                 <hr className="mt-4 mb-5" />
