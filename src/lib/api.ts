@@ -13,7 +13,7 @@ interface paginatedProducts {
 }
 
 const API_URL = process.env.API_URL!;
-const revalidateTime = 0;
+const revalidateTime = 10;
 const PRODUCTS_PER_PAGE = 12;
 const BLOGS_PER_PAGE = 12;
 
