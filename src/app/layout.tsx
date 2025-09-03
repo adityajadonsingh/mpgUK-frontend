@@ -57,7 +57,7 @@ export default async function RootLayout({
   return (
     <html lang="en">
       <head>
-        {/* <GoogleAnalytics /> */}
+        <GoogleAnalytics />
         <link
           rel="icon"
           type="image/png"
