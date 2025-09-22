@@ -75,7 +75,7 @@ export default async function RootLayout({
         <link href="https://mpgstone.co.uk/" hrefLang="x-default" rel="alternate" />
         <Script
           id="tawk-to"
-          strategy="afterInteractive"
+          strategy="lazyOnload"
           dangerouslySetInnerHTML={{
             __html: `
               var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
