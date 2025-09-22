@@ -158,7 +158,7 @@ export default function SearchPopup({
                     filteredProducts.map((prod) => (
                       <Link
                         key={prod.id}
-                        href={`/${prod.category
+                        href={`/product-category/${prod.category
                           .replace(/ /g, "-")
                           .toLowerCase()}/${prod.slug}`}
                         className="block px-3 py-2 capitalize hover:bg-gray-50 text-sm"

@@ -3,6 +3,15 @@
 
 import Link from "next/link";
 
+import { Metadata } from "next";
+
+export const metadata: Metadata = {
+  robots: {
+    index: false,
+    follow: false,
+  },
+};
+
 export default function ThankYouPage() {
   return (
     <div className="min-h-[80vh] bg-gray-50 flex flex-col items-center justify-center p-6">

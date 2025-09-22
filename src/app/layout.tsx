@@ -72,6 +72,7 @@ export default async function RootLayout({
           href="/apple-touch-icon.png"
         />
         <link rel="manifest" href="/site.webmanifest" />
+        <link href="https://mpgstone.co.uk/" hrefLang="x-default" rel="alternate" />
         <Script
           id="tawk-to"
           strategy="afterInteractive"

@@ -3,7 +3,7 @@ import PageBanner from "@/components/PageBanner";
 import { getPaginatedProducts, getMetaData } from "@/lib/api";
 import { MetaData } from "@/types";
 import { Metadata } from "next";
-import { notFound, redirect } from "next/navigation";
+import { notFound, permanentRedirect } from "next/navigation";
 
 export default async function ProductsPagePaginated({
   params,
@@ -14,7 +14,7 @@ export default async function ProductsPagePaginated({
   const getPageNumber = getParams.page;
   const pageNumber = parseInt(getPageNumber) || 1;
   if (pageNumber === 1) {
-    redirect("/products/");
+    permanentRedirect('/products/');
   }
   const { products, totalPages } = await getPaginatedProducts(pageNumber);
   if (pageNumber > totalPages) return notFound();

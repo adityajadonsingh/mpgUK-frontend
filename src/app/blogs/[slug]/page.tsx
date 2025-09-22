@@ -178,6 +178,11 @@ export default async function BlogsPage({
                     <i className="bi bi-person-fill text-[#f48245] text-[17px]"></i>{" "}
                     Author : <span className="text-[#f48245] font-medium hover:text-[#ff6b1c]"><Link href={"/author/jaya_tripathi"}>Jaya Tripathi</Link></span>
                   </li>
+                  <li>|</li>
+                  <li>
+                    
+                    Category : <span className="text-[#f48245] capitalize font-medium hover:text-[#ff6b1c]"><Link href={`blog-category/${blog.category?.slug}`}>{blog.category.name}</Link></span>
+                  </li>
                 </ul>
                 <hr className="mt-4 mb-5" />
                 <div className="blog-main-img relative mb-5">
