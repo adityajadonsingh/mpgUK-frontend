@@ -181,7 +181,7 @@ export default async function BlogsPage({
                   <li>|</li>
                   <li>
                     
-                    Category : <span className="text-[#f48245] capitalize font-medium hover:text-[#ff6b1c]"><Link href={`blog-category/${blog.category?.slug}`}>{blog.category.name}</Link></span>
+                    Category : <span className="text-[#f48245] capitalize font-medium hover:text-[#ff6b1c]"><Link href={`/blog-category/${blog.category?.slug}`}>{blog.category.name}</Link></span>
                   </li>
                 </ul>
                 <hr className="mt-4 mb-5" />
