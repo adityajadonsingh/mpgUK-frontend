@@ -7,8 +7,12 @@ import ContactSection from "@/components/home/ContactSection";
 import FeatureCard from "@/components/home/FeatureCard";
 import TestimonialSection from "@/components/home/TestimonialSection";
 import SchemaInjector from "@/components/SchemaInjector";
+import "swiper/css";
+import "swiper/css/pagination";
+import "swiper/css/navigation";
+
 import { getBlogs, getHomeBanners, getHomePageData, getTestimonials } from "@/lib/api";
-import { Banner, HomepageContent } from "@/types";
+import { HomepageContent } from "@/types";
 import { Metadata } from "next";
 
 export async function generateMetadata(): Promise<Metadata> {
@@ -40,10 +44,13 @@ export async function generateMetadata(): Promise<Metadata> {
 }
 
 export default async function HomePage() {
-  const homepageContent: HomepageContent = await getHomePageData();
-  const bannerData: Banner[] = await getHomeBanners();
-  const {testimonials} = await getTestimonials();
-  const {blogs} = await getBlogs();
+  const [homepageContent, bannerData, { testimonials }, { blogs }] =
+    await Promise.all([
+      getHomePageData(),
+      getHomeBanners(),
+      getTestimonials(),
+      getBlogs(),
+    ]);
 
   return (
     <>

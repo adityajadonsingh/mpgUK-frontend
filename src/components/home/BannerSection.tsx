@@ -4,35 +4,31 @@ import { Banner } from "@/types";
 import Image from "next/image";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Pagination, Autoplay } from "swiper/modules";
-import "swiper/css";
-import "swiper/css/pagination";
 
 export default function BannerSection({ data }: { data: Banner[] }) {
   return (
-    <section className="home-banner w-full">
+    <section className="home-banner w-full relative">
       <Swiper
         pagination={{ clickable: true }}
         modules={[Pagination, Autoplay]}
         slidesPerView={1}
-        className="h-full w-full"
-        loop={true}
-        autoplay={{
-          delay: 6000,
-          disableOnInteraction: false,
-        }}
+        loop
+        autoplay={{ delay: 6000, disableOnInteraction: false }}
         speed={800}
-        effect="slide"
+        className="h-full w-full"
       >
-        {data.map((banner) => (
-          <SwiperSlide key={banner.id} className="relative w-full h-full">
-            <div className="w-full h-full flex flex-col items-center z-10 justify-end bg-gray-100 text-center relative slide-wraper">
+        {data.map((banner, i) => (
+          <SwiperSlide key={banner.id} className="relative w-full h-[600px]">
+            <div className="relative w-full h-full flex flex-col items-center justify-end text-center slide-wraper">
               <Image
                 src={banner.image}
                 alt={banner.alt_text ?? "Banner Image"}
-                className="w-full h-full z-0 object-cover object-center"
                 fill
+                priority={i === 0}
+                sizes="100vw"
+                className="object-cover object-center"
               />
-              <div className="content-box">
+              <div className="absolute bottom-10 z-20 text-white px-4 content-box">
                 <h2 className="xl:text-4xl lg:text-3xl md:text-2xl text-xl font-bold mb-3 capitalize">
                   {banner.title}
                 </h2>
@@ -41,11 +37,8 @@ export default function BannerSection({ data }: { data: Banner[] }) {
                   onClick={() => {
                     const el = document.getElementById("contact-section");
                     if (el) {
-                      const yOffset = -100;
                       const y =
-                        el.getBoundingClientRect().top +
-                        window.pageYOffset +
-                        yOffset;
+                        el.getBoundingClientRect().top + window.scrollY - 100;
                       window.scrollTo({ top: y, behavior: "smooth" });
                     }
                   }}
