@@ -163,6 +163,7 @@ export async function POST(request: Request) {
     await transporter.sendMail({
       from: "digital@mpgstone.com",
       to: email,
+      cc: ["kaushik@mpgstones.com", "umang@mpgstone.co.uk","frontend@mpgstone.com"],
       subject: userSubject,
       html: userContent,
     });
